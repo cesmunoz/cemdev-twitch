@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "./logo.svg";
+import '@themesberg/flowbite';
 import "./App.css";
 
 function App() {
