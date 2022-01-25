@@ -11,13 +11,15 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/histories" element={<Histories />} />
-          <Route path="/requests" element={<Requests />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <div class="container mx-auto">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/histories" element={<Histories />} />
+            <Route path="/requests" element={<Requests />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </div>
