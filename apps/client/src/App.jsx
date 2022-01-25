@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <div class="container mx-auto">
+        <div className="container mx-auto">
           <Routes>
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
