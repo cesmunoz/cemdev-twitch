@@ -3,7 +3,7 @@ const TableRowItem = ({ keys, item }) => {
   const actions = keys.filter(key => key.action);
 
   return (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-left">
       {titleKeys.map(key => (
         <td
           key={`${item.id}-${key.key}`}
@@ -12,7 +12,7 @@ const TableRowItem = ({ keys, item }) => {
           {item[key.key]}
         </td>
       ))}
-      <td className="flex py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+      <td className="flex py-4 px-6 text-sm font-medium text-left whitespace-nowrap">
         {actions.map(action => (
           <div
             key={action.action}
