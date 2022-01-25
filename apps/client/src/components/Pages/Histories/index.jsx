@@ -23,19 +23,10 @@ const Histories = () => {
     }
   ]);
 
-  const handleEdit = (id) => {
-    console.log("handleEdit", id);
-  };
-  const handleRemove = (id) => {
-    console.log("handleRemove", id);
-  };
-
   const HEADERS = [
     { key: "user", title: "User" },
     { key: "command", title: "Command" },
-    { key: "timestamp", title: "Timestamp" },
-    { key: "edit", title: "Edit", action: handleEdit },
-    { key: "remove", title: "Remove", action: handleRemove }
+    { key: "timestamp", title: "Timestamp" }
   ];
 
   return <Table headers={HEADERS} items={historyList} />;
