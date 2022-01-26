@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/cesmunoz/cembot/issues"
   },
-  "homepage": "https://github.com/cesmunoz/cembot#readme"
+  "homepage": "https://github.com/cesmunoz/cembot#readme",
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "^2.5.1"
+  }
 }
