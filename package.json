@@ -6,8 +6,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:client": "cd apps/client && npm run dev",
-    "dev:server": "cd apps/server && npm run dev",
+    "dev": "turbo run dev",
+    "dev:client": "turbo run dev --scope=client",
+    "dev:server": "turbo run dev --scope=server",
     "build": "turbo run build",
     "lint": "turbo run lint"
   },
