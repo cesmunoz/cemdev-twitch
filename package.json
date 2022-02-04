@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:client": "cd apps/client && npm run dev",
-    "dev:server": "cd apps/server && npm run dev"
+    "dev:server": "cd apps/server && npm run dev",
+    "build": "turbo run build"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,13 @@
   "devDependencies": {
     "eslint": "^8.7.0",
     "eslint-plugin-react": "^7.28.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "turbo": "^1.1.2"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ]
   }
 }
