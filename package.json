@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:client": "cd apps/client && npm run dev",
     "dev:server": "cd apps/server && npm run dev",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "lint": "turbo run lint"
   },
   "repository": {
     "type": "git",

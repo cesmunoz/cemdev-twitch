@@ -17,6 +17,7 @@
     "react-router-dom": "^6.2.1"
   },
   "devDependencies": {
+    "config": "*",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.7.0",
