@@ -1,25 +1,15 @@
-import { fastifyAwilixPlugin } from "fastify-awilix";
 import fastify from "fastify";
-import {registerContainer} from "./config/container";
-import { HelloWorldController } from "./controllers/HelloWorldController";
-
-import routes from './routes';
+import fp from 'fastify-plugin';
+import homeRoutes from './home';
+import registerContainer from "./config/diContainer";
 
 const server = fastify({ logger: true });
-server.register(fastifyAwilixPlugin, {
-  disposeOnClose: true,
-  disposeOnResponse: true,
-});
-
-registerContainer();
-
-routes.forEach((route:any) => {
-  server.register(route);
-})
 
 server.get("/", async () => ({ hello: "world!" }));
-server.get("/keep-alive", (req, res) => (server.diContainer.resolve("helloWorldController") as HelloWorldController).get(req, res));
+server.get("/ping", async (req, reply) => reply.send('pong'));
 
+server.register(fp(registerContainer));
+server.register(homeRoutes);
 
 const start = async () => {
   try {
