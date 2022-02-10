@@ -1,6 +1,6 @@
-import NavBar from "./NavBar";
+import NavBar from './NavBar';
 
-const Header = () => {
+function Header() {
   return <NavBar />;
 }
 

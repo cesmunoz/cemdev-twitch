@@ -1,7 +1,7 @@
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
-const Table = ({ headers, items }) => {
+function Table({ headers, items }) {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -16,6 +16,6 @@ const Table = ({ headers, items }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Table;

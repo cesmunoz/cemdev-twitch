@@ -27,6 +27,7 @@ const handleGreetings = (_arg: any, user: any) =>
   `Bienvenido al stream ${user}!!`;
 const handleGoodBye = (_arg: any, user: any) =>
   `Muchas gracias por haber estado en el stream ${user}! Nos vemos la proxima`;
+const handleToday = (_arg: any, user: any) => `Por que no le explicas cemdev a ${user} que vas hacer hoy?`
 
 /*
 !uptime
@@ -47,7 +48,7 @@ const commandHandlers = {
   "!saludar": handleGreetings,
   "!adios": handleGoodBye,
   //"!uptime": handleUptime,
-  // "!hoy": handleToday,
+  "!hoy": handleToday,
   // "!setup": handleSetups,
   // "!horarios": handleSchedule,
 };

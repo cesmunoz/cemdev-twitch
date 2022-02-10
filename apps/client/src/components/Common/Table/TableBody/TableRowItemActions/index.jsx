@@ -1,7 +1,7 @@
-const TableRowItemActions = ({ actions, itemId }) => {
+function TableRowItemActions({ actions, itemId }) {
   return (
     <td className="flex py-4 px-6 text-sm font-medium text-left whitespace-nowrap">
-      {actions.map(action => (
+      {actions.map((action) => (
         <div
           key={action.action}
           onClick={() => action.action(itemId)}
@@ -12,6 +12,6 @@ const TableRowItemActions = ({ actions, itemId }) => {
       ))}
     </td>
   );
-};
+}
 
 export default TableRowItemActions;

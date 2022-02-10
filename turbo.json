@@ -9,9 +9,9 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
-    "lint": {
-      "outputs": []
-    },
+    "format": { "outputs": [] },
+    "lint": { "outputs": [] },
+    "lint:fix": { "outputs": [] },
     "dev": {
       "cache": false
     }

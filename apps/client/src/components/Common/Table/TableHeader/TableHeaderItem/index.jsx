@@ -1,4 +1,4 @@
-const TableHeaderItem = ({ title }) => {
+function TableHeaderItem({ title }) {
   return (
     <th
       scope="col"
@@ -7,6 +7,6 @@ const TableHeaderItem = ({ title }) => {
       {title}
     </th>
   );
-};
+}
 
 export default TableHeaderItem;

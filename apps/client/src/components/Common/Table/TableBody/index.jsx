@@ -1,13 +1,17 @@
-import TableRowItem from "./TableRowItem";
+import TableRowItem from './TableRowItem';
 
-const TableBody = ({ keys, items }) => {
+function TableBody({ keys, items }) {
   return (
     <tbody>
-      {items.map(item => (
-        <TableRowItem key={item.id} keys={keys} item={item} />
+      {items.map((item) => (
+        <TableRowItem
+          key={item.id}
+          keys={keys}
+          item={item}
+        />
       ))}
     </tbody>
   );
-};
+}
 
 export default TableBody;
