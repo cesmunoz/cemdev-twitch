@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import TableRowItemActions from '../TableRowItemActions';
 
 function TableRowItem({ keys, item }) {
@@ -23,5 +25,16 @@ function TableRowItem({ keys, item }) {
     </tr>
   );
 }
+
+TableRowItem.propTypes = {
+  keys: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  item: PropTypes.object.isRequired,
+};
 
 export default TableRowItem;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Table } from '../../Common';
 
 function Requests() {
+  // eslint-disable-next-line no-unused-vars
   const [requestList, setRequestList] = useState([
     {
       id: 1,
@@ -23,10 +24,14 @@ function Requests() {
     },
   ]);
 
-  const handleApprove = (id) =>
+  const handleApprove = (id) => {
+    // eslint-disable-next-line no-console
     console.log('Handle Approve', id);
-  const handleDecline = (id) =>
+  };
+  const handleDecline = (id) => {
+    // eslint-disable-next-line no-console
     console.log('Handle Decline', id);
+  };
 
   const HEADERS = [
     { key: 'user', title: 'User' },

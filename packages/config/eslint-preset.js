@@ -18,6 +18,7 @@ module.exports = {
   },
   "plugins": ["react"],
   "rules": {
+    "react/forbid-prop-types": "off",
     "react/react-in-jsx-scope": "off"
   }
 }

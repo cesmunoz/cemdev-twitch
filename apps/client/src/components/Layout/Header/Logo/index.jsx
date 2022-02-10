@@ -1,5 +1,8 @@
+import React from 'react';
+
 function Logo() {
   return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a href="#" className="flex">
       <svg
         className="mr-3 h-10"

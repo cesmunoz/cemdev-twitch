@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 function TableHeaderItem({ title }) {
   return (
     <th
@@ -8,5 +11,9 @@ function TableHeaderItem({ title }) {
     </th>
   );
 }
+
+TableHeaderItem.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default TableHeaderItem;

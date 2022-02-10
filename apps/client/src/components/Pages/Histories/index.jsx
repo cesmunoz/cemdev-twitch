@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Table } from '../../Common';
 
 function Histories() {
+  // eslint-disable-next-line no-unused-vars
   const [historyList, setHistoryList] = useState([
     {
       id: 1,

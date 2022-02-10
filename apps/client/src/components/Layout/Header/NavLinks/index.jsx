@@ -1,6 +1,9 @@
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { NAVIGATION_ITEMS } from '../../../../constants';
+import constants from '../../../../constants';
 import NavLinkItem from '../NavLinkItem';
+
+const { NAVIGATION_ITEMS } = constants;
 
 function NavLinks() {
   const { pathname } = useLocation();
@@ -15,6 +18,7 @@ function NavLinks() {
           <NavLinkItem
             key={item.name}
             selected={pathname === item.path}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...item}
           />
         ))}
