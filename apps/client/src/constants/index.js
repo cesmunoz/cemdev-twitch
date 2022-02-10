@@ -6,4 +6,4 @@ const NAVIGATION_ITEMS = [
   { name: 'Contact', path: '/contact' },
 ];
 
-export { NAVIGATION_ITEMS };
+export default { NAVIGATION_ITEMS };
