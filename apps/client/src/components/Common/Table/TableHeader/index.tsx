@@ -1,10 +1,10 @@
-import React from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import TableHeaderItem from './TableHeaderItem';
 
-function TableHeader({ items }) {
-  const titleKeys = items.filter((key) => !key.action);
-  const hasActions = items.filter((key) => key.action);
+function TableHeader({ items }: { items: any }) {
+  const titleKeys = items.filter((key: any) => !key.action);
+  const hasActions = items.filter((key: any) => key.action);
 
   const headerItems = [
     ...titleKeys,

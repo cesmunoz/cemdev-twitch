@@ -1,9 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
-function Table({ headers, items }) {
+function Table({
+  headers,
+  items,
+}: {
+  headers: any;
+  items: any;
+}) {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -19,18 +23,5 @@ function Table({ headers, items }) {
     </div>
   );
 }
-
-Table.propTypes = {
-  headers: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      action: PropTypes.func,
-    }),
-  ).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  items: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-};
 
 export default Table;

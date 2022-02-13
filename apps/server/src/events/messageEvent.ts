@@ -31,8 +31,8 @@ const handleToday = (_arg: any, user: any) =>
   `Por que no le explicas cemdev a ${user} que vas hacer hoy?`;
 
 type TwitchHandleCommand = {
-  [key: string]: (_arg: any, user:any) => string;
-}
+  [key: string]: (_arg: any, user: any) => string;
+};
 
 const commandHandlers: TwitchHandleCommand = {
   '!dice': handleDice,
@@ -57,7 +57,6 @@ const commandHandlers: TwitchHandleCommand = {
 !setup
 !horarios
 */
-
 
 const registerEvent = (client: Client) => {
   const handler = (

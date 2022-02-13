@@ -1,7 +1,7 @@
-import React from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 
-function TableHeaderItem({ title }) {
+function TableHeaderItem({ title }: { title: any }) {
   return (
     <th
       scope="col"
