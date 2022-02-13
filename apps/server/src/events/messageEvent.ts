@@ -1,6 +1,6 @@
 import { Client } from 'tmi.js';
 
-const handleDice = (): any => {
+const handleDice = () => {
   const sides = 6;
   const result = Math.floor(Math.random() * sides) + 1;
   return `You rolled a ${result}`;
@@ -30,14 +30,11 @@ const handleGoodBye = (_arg: any, user: any) =>
 const handleToday = (_arg: any, user: any) =>
   `Por que no le explicas cemdev a ${user} que vas hacer hoy?`;
 
-/*
-!uptime
-!hoy
-!setup
-!horarios
-*/
+type TwitchHandleCommand = {
+  [key: string]: (_arg: any, user:any) => string;
+}
 
-const commandHandlers = {
+const commandHandlers: TwitchHandleCommand = {
   '!dice': handleDice,
   '!discord': handleDiscord,
   '!twitter': handleTwitter,
@@ -48,11 +45,19 @@ const commandHandlers = {
   '!silenciar': handleSilence,
   '!saludar': handleGreetings,
   '!adios': handleGoodBye,
-  //"!uptime": handleUptime,
+  // "!uptime": handleUptime,
   '!hoy': handleToday,
   // "!setup": handleSetups,
   // "!horarios": handleSchedule,
 };
+// TODO: better handler commands
+/*
+!uptime
+!hoy
+!setup
+!horarios
+*/
+
 
 const registerEvent = (client: Client) => {
   const handler = (
@@ -81,7 +86,6 @@ const registerEvent = (client: Client) => {
     const arg = msg.trim().replace(commandName, '');
     const { username } = context;
 
-    //@ts-ignore
     const handler = commandHandlers[commandName];
     const result = handler(arg, username);
     client.say(target, result);
