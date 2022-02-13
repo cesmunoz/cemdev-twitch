@@ -1,4 +1,4 @@
-import { Client } from "tmi.js";
+import { Client } from 'tmi.js';
 
 const handleDice = (): any => {
   const sides = 6;
@@ -7,18 +7,18 @@ const handleDice = (): any => {
 };
 
 const handleTwitter = () =>
-  "Por favor sigueme por twitter! https://twitter.com/cesmdev";
+  'Por favor sigueme por twitter! https://twitter.com/cesmdev';
 const handleDevTo = () =>
-  "Quieres leer mis articulos? Pasate por Dev.to https://dev.to/cemdev";
+  'Quieres leer mis articulos? Pasate por Dev.to https://dev.to/cemdev';
 const handleInstagram = () =>
-  "Quieres ver lo que hago en el dia? Pasate por instagram https://www.instagram.com/cesmdev/";
-const handleYouTube = () => "Todavia no hay youtube Kappa";
+  'Quieres ver lo que hago en el dia? Pasate por instagram https://www.instagram.com/cesmdev/';
+const handleYouTube = () => 'Todavia no hay youtube Kappa';
 const handleTikTok = () =>
-  "Tenemos TikTok! Entra a https://www.tiktok.com/@cesmdev";
+  'Tenemos TikTok! Entra a https://www.tiktok.com/@cesmdev';
 const handleDiscord = () =>
-  "Ingresa al discord de la comunidad! https://discord.gg/FG6bkUjz7b";
+  'Ingresa al discord de la comunidad! https://discord.gg/FG6bkUjz7b';
 const handleSilence = (msg: any) => {
-  const user = msg.trim().split(" ")[0];
+  const user = msg.trim().split(' ')[0];
   // TODO: Search for user?
   return `No seas malo Kappa. Como vas a silenciar a ${user}?`;
 };
@@ -27,7 +27,8 @@ const handleGreetings = (_arg: any, user: any) =>
   `Bienvenido al stream ${user}!!`;
 const handleGoodBye = (_arg: any, user: any) =>
   `Muchas gracias por haber estado en el stream ${user}! Nos vemos la proxima`;
-const handleToday = (_arg: any, user: any) => `Por que no le explicas cemdev a ${user} que vas hacer hoy?`
+const handleToday = (_arg: any, user: any) =>
+  `Por que no le explicas cemdev a ${user} que vas hacer hoy?`;
 
 /*
 !uptime
@@ -37,30 +38,35 @@ const handleToday = (_arg: any, user: any) => `Por que no le explicas cemdev a $
 */
 
 const commandHandlers = {
-  "!dice": handleDice,
-  "!discord": handleDiscord,
-  "!twitter": handleTwitter,
-  "!devto": handleDevTo,
-  "!instagram": handleInstagram,
-  "!youtube": handleYouTube,
-  "!tiktok": handleTikTok,
-  "!silenciar": handleSilence,
-  "!saludar": handleGreetings,
-  "!adios": handleGoodBye,
+  '!dice': handleDice,
+  '!discord': handleDiscord,
+  '!twitter': handleTwitter,
+  '!devto': handleDevTo,
+  '!instagram': handleInstagram,
+  '!youtube': handleYouTube,
+  '!tiktok': handleTikTok,
+  '!silenciar': handleSilence,
+  '!saludar': handleGreetings,
+  '!adios': handleGoodBye,
   //"!uptime": handleUptime,
-  "!hoy": handleToday,
+  '!hoy': handleToday,
   // "!setup": handleSetups,
   // "!horarios": handleSchedule,
 };
 
 const registerEvent = (client: Client) => {
-  const handler = (target: any, context: any, msg: any, self: any) => {
+  const handler = (
+    target: any,
+    context: any,
+    msg: any,
+    self: any,
+  ) => {
     if (self) {
       // Ignore messages from the bot
       return;
     }
 
-    const commandName = msg.trim().split(" ")[0];
+    const commandName = msg.trim().split(' ')[0];
 
     const commandExists = Object.keys(commandHandlers).some(
       (command) => command === commandName,
@@ -72,7 +78,7 @@ const registerEvent = (client: Client) => {
       return;
     }
 
-    const arg = msg.trim().replace(commandName, "");
+    const arg = msg.trim().replace(commandName, '');
     const { username } = context;
 
     //@ts-ignore
@@ -81,6 +87,6 @@ const registerEvent = (client: Client) => {
     client.say(target, result);
   };
 
-  client.on("message", handler);
+  client.on('message', handler);
 };
 export default registerEvent;
