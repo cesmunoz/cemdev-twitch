@@ -1,10 +1,9 @@
 import fastify from "fastify";
 import fp from "fastify-plugin";
 import dotenv from "dotenv";
-import homeRoutes from "./home";
 import registerContainer from "./config/diContainer";
-import getTwitchBotClient from "./twitchBot";
-import registerTwitchEvents from "./events";
+import homeRoutes from "./home";
+import twitchBot from "./twitchBot";
 
 dotenv.config();
 const PORT = process.env.PORT || 3001;
@@ -15,14 +14,11 @@ server.get("/", async () => ({ hello: "world!" }));
 server.get("/ping", async (_req, reply) => reply.send("pong"));
 
 server.register(fp(registerContainer));
-server.register(homeRoutes);
+server.register(homeRoutes, { prefix: "/home" });
 
 const start = async () => {
   try {
-    const twitchClient = getTwitchBotClient();
-    registerTwitchEvents(twitchClient);
-    await twitchClient.connect();
-
+    twitchBot.connect();
     await server.listen(PORT);
   } catch (err) {
     server.log.error(err);

@@ -1,6 +1,12 @@
 import { FastifyError, FastifyInstance, FastifyPluginOptions } from "fastify";
 import HomeService from "../home/service";
 
+declare module "fastify" {
+  interface FastifyInstance {
+    homeService: HomeService;
+  }
+}
+
 async function registerContainer(
   fastify: FastifyInstance,
   _options: FastifyPluginOptions,

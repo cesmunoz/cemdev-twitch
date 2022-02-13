@@ -1,6 +1,7 @@
 import tmi from "tmi.js";
+import registerTwitchEvents from "./events";
 
-const getTwitchBotClient = () => {
+const getClient = () => {
   const { TWITCH_BOT_NAME, TWITCH_BOT_AUTH, TWITCH_CHANNELS } = process.env;
 
   return new tmi.Client({
@@ -16,4 +17,13 @@ const getTwitchBotClient = () => {
     channels: [TWITCH_CHANNELS as string],
   });
 };
-export default getTwitchBotClient;
+
+const connect = async () => {
+  const twitchClient = getClient();
+  registerTwitchEvents(twitchClient);
+  await twitchClient.connect();
+};
+
+export default {
+  connect
+};

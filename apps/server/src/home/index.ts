@@ -1,12 +1,10 @@
-import { FastifyError, FastifyInstance, FastifyPluginOptions } from "fastify";
-import { get } from "./controller";
+import { FastifyInstance, FastifyPluginOptions } from "fastify";
+import { get, post } from  './controller';
 
-const ROUTE = "/home";
 export default async function (
   fastify: FastifyInstance,
   _options: FastifyPluginOptions,
-  done: (err?: FastifyError) => void,
 ) {
-  fastify.get(ROUTE, get);
-  done();
+  fastify.get("/", get);
+  fastify.post("/", post);
 }

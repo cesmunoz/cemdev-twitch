@@ -6,8 +6,14 @@ class HomeService {
 
   public async get() {
     return {
-      home: "from service",
+      home: "from service get",
     };
+  }
+
+  public async post() {
+    return {
+      home: "from service post"
+    }
   }
 }
 
