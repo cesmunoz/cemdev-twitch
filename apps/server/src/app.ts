@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import fp from 'fastify-plugin';
+import fc from "fastify-cors";
 import dotenv from 'dotenv';
 import registerContainer from './config/diContainer';
 import homeRoutes from './home';
@@ -9,6 +10,10 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 const server = fastify({ logger: true });
+
+server.register(fc, {
+  origin: '*'
+});
 
 server.get('/', async () => ({ hello: 'world!' }));
 server.get('/ping', async (_req, reply) =>

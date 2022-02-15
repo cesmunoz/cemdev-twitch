@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Table } from '../../components/Common';
 
 function Histories() {
@@ -23,6 +23,12 @@ function Histories() {
       user: 'cemdev',
     },
   ]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/ping', { method: 'GET' })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  }, []);
 
   const HEADERS = [
     { key: 'user', title: 'User' },

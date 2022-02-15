@@ -106,3 +106,5 @@ dist
 build/**
 dist/**
 .env
+.yarnrc
+.yarn
