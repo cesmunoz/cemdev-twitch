@@ -16,7 +16,6 @@ import {
 function App() {
   return (
     <div className="App">
-      CESAR
       <BrowserRouter>
         <Header />
         <div className="container mx-auto">
