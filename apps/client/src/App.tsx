@@ -11,7 +11,7 @@ import {
   Histories,
   Home,
   Requests,
-} from './components/Pages';
+} from './Pages';
 
 function App() {
   return (

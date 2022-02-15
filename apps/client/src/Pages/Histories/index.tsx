@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Table } from '../../Common';
+import { Table } from '../../components/Common';
 
 function Histories() {
   // eslint-disable-next-line no-unused-vars
