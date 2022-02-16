@@ -12,7 +12,7 @@ function TableHeader({ items }: { items: any }) {
   ];
 
   return (
-    <thead className="bg-gray-50 dark:bg-gray-700">
+    <thead className="bg-gray-200 dark:bg-gray-700">
       <tr>
         {headerItems.map((item) => (
           // eslint-disable-next-line react/jsx-props-no-spreading

@@ -2,10 +2,16 @@
 import PropTypes from 'prop-types';
 import TableRowItem from './TableRowItem';
 
-function TableBody({ keys, items }) {
+function TableBody({
+  keys,
+  items,
+}: {
+  keys: any;
+  items?: any;
+}) {
   return (
     <tbody>
-      {items.map((item) => (
+      {items.map((item: any) => (
         <TableRowItem
           key={item.id}
           keys={keys}
@@ -24,8 +30,11 @@ TableBody.propTypes = {
     }),
   ).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  items: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
+  // items: PropTypes.arrayOf(PropTypes.object.isRequired),
+};
+
+TableBody.defaultProps = {
+  items: [],
 };
 
 export default TableBody;

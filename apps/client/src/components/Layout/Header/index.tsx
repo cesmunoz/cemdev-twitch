@@ -1,7 +1,9 @@
-import NavBar from './NavBar';
+import NavBar from '../NavBar';
 
 function Header() {
-  return <NavBar />;
+  return (
+    <NavBar />
+  );
 }
 
 export default Header;

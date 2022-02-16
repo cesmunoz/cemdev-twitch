@@ -10,9 +10,17 @@
     "dev:client": "turbo run dev --scope=client",
     "dev:server": "turbo run dev --scope=server",
     "build": "turbo run build",
+    "build:client": "turbo run build --scope=client",
+    "build:server": "turbo run build --scope=server",
     "format": "turbo run format",
+    "format:client": "turbo run format --scope=client",
+    "format:server": "turbo run format --scope=server",
     "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix"
+    "lint:client": "turbo run lint --scope=client",
+    "lint:server": "turbo run lint --scope=server",
+    "lint:fix": "turbo run lint:fix",
+    "lint:fix:client": "turbo run lint:fix --scope=client",
+    "lint:fix:server": "turbo run lint:fix --scope=server"
   },
   "repository": {
     "type": "git",
