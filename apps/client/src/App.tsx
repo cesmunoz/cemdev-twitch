@@ -17,10 +17,10 @@ function App() {
   return (
     <div className="App">
       <div id="container mx-auto" className="flex flex-row">
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <BrowserRouter>
             <Header />
-            <div id="content" className="w-full">
+            <div id="content" className="container flex flex-wrap justify-between items-center mx-auto w-full">
               <Routes>
                 <Route path="/about" element={<About />} />
                 <Route
