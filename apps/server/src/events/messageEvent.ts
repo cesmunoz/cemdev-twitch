@@ -71,6 +71,9 @@ const registerEvent = (client: Client) => {
     }
 
     const commandName = msg.trim().split(' ')[0];
+    if(!commandName.startsWith("!")) {
+      return;
+    }
 
     const commandExists = Object.keys(commandHandlers).some(
       (command) => command === commandName,
