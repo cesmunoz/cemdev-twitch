@@ -16,7 +16,7 @@ const handleYouTube = () => 'Todavia no hay youtube Kappa';
 const handleTikTok = () =>
   'Tenemos TikTok! Entra a https://www.tiktok.com/@cesmdev';
 const handleDiscord = () =>
-  'Ingresa al discord de la comunidad! https://discord.gg/FG6bkUjz7b';
+  'Ingresa al discord de la comunidad! https://discord.gg/9FdNqwqurY';
 const handleSilence = (msg: any) => {
   const user = msg.trim().split(' ')[0];
   // TODO: Search for user?

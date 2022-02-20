@@ -5,9 +5,13 @@ import { Table } from '../../components/Common';
 function Histories() {
   // eslint-disable-next-line no-unused-vars
   const [historyList, setHistoryList] = useState([]);
+  const [lastId, setLastId] = useState(null);
 
   useEffect(() => {
-    getAll('histories').then((response) => setHistoryList(response));
+    getAll(`histories?lastId=${lastId}`).then((response) => {
+      setHistoryList(response);
+      setLastId(response[response.length - 1].id);
+    });
   }, []);
 
   const HEADERS = [
