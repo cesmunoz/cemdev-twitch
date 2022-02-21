@@ -108,5 +108,3 @@ dist/**
 .env
 .yarnrc
 .yarn
-
-lambdas
