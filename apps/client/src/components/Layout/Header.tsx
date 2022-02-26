@@ -42,6 +42,7 @@ function Header({ onOpen, ...rest }: MobileProps) {
         base: 'space-between',
         md: 'flex-end',
       }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
       <IconButton
@@ -86,7 +87,7 @@ function Header({ onOpen, ...rest }: MobileProps) {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">CemDev</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>

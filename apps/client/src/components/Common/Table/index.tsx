@@ -1,27 +1,76 @@
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
+import {
+  Box,
+  Flex,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react';
 
-function Table({
+function CemTable({
   headers,
   items,
 }: {
   headers: any;
   items: any;
 }) {
+  const titleKeys = headers.filter(
+    (key: any) => !key.action,
+  );
+  const actions = headers.filter((key: any) => key.action);
+
+  const headerItems = [
+    ...titleKeys,
+    ...(actions && [{ key: 'actions', title: '' }]),
+  ];
+
   return (
-    <div className="flex flex-col w-full">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-          <div className="overflow-hidden shadow-md sm:rounded-lg">
-            <table className="min-w-full">
-              <TableHeader items={headers} />
-              <TableBody keys={headers} items={items} />
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Table
+      variant="striped"
+      colorScheme="teal"
+      className="min-w-full"
+    >
+      <Thead>
+        <Tr>
+          {headerItems.map((item: any) => (
+            <Th key={item.key} scope="col">
+              {item.title}
+            </Th>
+          ))}
+        </Tr>
+      </Thead>
+      <Tbody>
+        {items.map((item: any) => (
+          <Tr key={item.id}>
+            {titleKeys.map((key: any) => (
+              <Td key={`${item.id}-${key.key}`}>
+                {item[key.key]}
+              </Td>
+            ))}
+            {actions.length > 0 && (
+              <Td>
+                <Flex>
+                  {actions.map((action: any, index: number) => (
+                    <Box
+                      role="button"
+                      tabIndex={index}
+                      key={`${action.action}-${item.id}`}
+                      onClick={() => action.action(item.id)}
+                      px="2"
+                    >
+                      {action.title}
+                    </Box>
+                  ))}
+                </Flex>
+              </Td>
+            )}
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
   );
 }
 
-export default Table;
+export default CemTable;
