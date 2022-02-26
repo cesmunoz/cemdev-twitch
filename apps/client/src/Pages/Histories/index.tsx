@@ -8,10 +8,12 @@ function Histories() {
   const [lastId, setLastId] = useState(null);
 
   useEffect(() => {
-    getAll(`histories?lastId=${lastId}`).then((response) => {
-      setHistoryList(response);
-      setLastId(response[response.length - 1].id);
-    });
+    getAll(`histories?lastId=${lastId}`).then(
+      (response) => {
+        setHistoryList(response);
+        setLastId(response[response.length - 1].id);
+      },
+    );
   }, []);
 
   const HEADERS = [

@@ -3,8 +3,8 @@ import {
   BrowserRouter,
   Routes,
 } from 'react-router-dom';
-import { Header, Footer } from './components/Layout';
 import './App.css';
+import { ChakraProvider } from '@chakra-ui/react';
 import {
   About,
   Contact,
@@ -12,22 +12,22 @@ import {
   Home,
   Requests,
 } from './Pages';
-import SidebarWithHeader from './components/Layout/Layout';
-import { ChakraProvider } from '@chakra-ui/react';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <div className="App">
       <ChakraProvider>
         <BrowserRouter>
-          <SidebarWithHeader>
+          <Layout>
             {/* <div id="container mx-auto" className="flex flex-row"> */}
             <div id="container" className="">
               {/* <div className="flex flex-col w-full"> */}
               <div className="">
                 <div
                   id="content"
-                  className="container flex flex-wrap justify-between items-center mx-auto w-full">
+                  className="container flex flex-wrap justify-between items-center mx-auto w-full"
+                >
                   <Routes>
                     <Route
                       path="/about"
@@ -50,7 +50,7 @@ function App() {
                 </div>
               </div>
             </div>
-          </SidebarWithHeader>
+          </Layout>
         </BrowserRouter>
       </ChakraProvider>
     </div>
