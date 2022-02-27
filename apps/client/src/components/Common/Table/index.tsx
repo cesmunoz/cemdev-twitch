@@ -30,8 +30,7 @@ function CemTable({
     <Table
       variant="striped"
       colorScheme="teal"
-      className="min-w-full"
-    >
+      className="min-w-full">
       <Thead>
         <Tr>
           {headerItems.map((item: any) => (
@@ -52,17 +51,20 @@ function CemTable({
             {actions.length > 0 && (
               <Td>
                 <Flex>
-                  {actions.map((action: any, index: number) => (
-                    <Box
-                      role="button"
-                      tabIndex={index}
-                      key={`${action.action}-${item.id}`}
-                      onClick={() => action.action(item.id)}
-                      px="2"
-                    >
-                      {action.title}
-                    </Box>
-                  ))}
+                  {actions.map(
+                    (action: any, index: number) => (
+                      <Box
+                        role="button"
+                        tabIndex={index}
+                        key={`${action.action}-${item.id}`}
+                        onClick={() =>
+                          action.action(item.id)
+                        }
+                        px="2">
+                        {action.title}
+                      </Box>
+                    ),
+                  )}
                 </Flex>
               </Td>
             )}

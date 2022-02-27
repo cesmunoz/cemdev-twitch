@@ -24,11 +24,11 @@ function Requests() {
     },
   ]);
 
-  const handleApprove = (id) => {
+  const handleApprove = (id: any) => {
     // eslint-disable-next-line no-console
     console.log('Handle Approve', id);
   };
-  const handleDecline = (id) => {
+  const handleDecline = (id: any) => {
     // eslint-disable-next-line no-console
     console.log('Handle Decline', id);
   };

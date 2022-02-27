@@ -18,8 +18,7 @@ export default function Layout({
   return (
     <Box
       minH="100vh"
-      bg={useColorModeValue('gray.100', 'gray.900')}
-    >
+      bg={useColorModeValue('gray.100', 'gray.900')}>
       <Sidebar
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -31,8 +30,7 @@ export default function Layout({
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
-      >
+        size="full">
         <DrawerContent>
           <Sidebar onClose={onClose} />
         </DrawerContent>

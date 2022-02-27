@@ -1,0 +1,7 @@
+[build]
+  functions="api/"
+
+[dev]
+  functions="api/"
+  functionsPort=8888
+  port=8080

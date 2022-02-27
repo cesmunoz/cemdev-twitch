@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import fetchCreator from './fetchCreator';
 
 const API_URL = 'http://localhost:3001';

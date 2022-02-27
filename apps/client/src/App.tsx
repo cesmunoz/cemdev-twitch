@@ -27,8 +27,7 @@ function App() {
               <div className="">
                 <div
                   id="content"
-                  className="container flex flex-wrap justify-between items-center mx-auto w-full"
-                >
+                  className="container flex flex-wrap justify-between items-center mx-auto w-full">
                   <Routes>
                     <Route
                       path="/about"

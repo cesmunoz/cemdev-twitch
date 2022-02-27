@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAll } from '../../utils/entity';
+import { getAll } from '../../api/entity';
 import { Table } from '../../components/Common';
 
 function Histories() {

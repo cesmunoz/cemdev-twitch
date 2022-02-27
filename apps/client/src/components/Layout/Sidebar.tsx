@@ -26,19 +26,16 @@ function Sidebar({ onClose, ...rest }: SidebarProps) {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}
-    >
+      {...rest}>
       <Flex
         h="20"
         alignItems="center"
         mx="8"
-        justifyContent="space-between"
-      >
+        justifyContent="space-between">
         <Text
           fontSize="2xl"
           fontFamily="monospace"
-          fontWeight="bold"
-        >
+          fontWeight="bold">
           {constants.APP_NAME}
         </Text>
         <CloseButton
@@ -51,8 +48,7 @@ function Sidebar({ onClose, ...rest }: SidebarProps) {
           key={link.name}
           name={link.name}
           icon={link.icon}
-          path={link.path}
-        >
+          path={link.path}>
           {link.name}
         </NavItem>
       ))}
