@@ -79,7 +79,7 @@ function Header({ onOpen, ...rest }: MobileProps) {
               <HStack>
                 <Avatar
                   size="sm"
-                  src="https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                  src="https://camo.githubusercontent.com/0aef207f54367512a6acce73b77b89b42e05d21210ff5d36f60aea8a2948e017/68747470733a2f2f696d6770696c652e636f6d2f696d616765732f7565794337692e706e67"
                 />
                 <VStack
                   display={{ base: 'none', md: 'flex' }}

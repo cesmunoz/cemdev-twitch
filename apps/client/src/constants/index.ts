@@ -4,13 +4,15 @@ import {
   FiSettings,
   FiStar,
   FiTrendingUp,
+  FiZap,
 } from 'react-icons/fi';
 
 const NAVIGATION_ITEMS = [
   { name: 'Home', icon: FiHome, path: '/' },
-  { name: 'About', icon: FiTrendingUp, path: '/about' },
+  { name: 'Commands', icon: FiZap, path: '/commands' },
   { name: 'Requests', icon: FiCompass, path: '/requests' },
   { name: 'Histories', icon: FiStar, path: '/histories' },
+  { name: 'About', icon: FiTrendingUp, path: '/about' },
   { name: 'Contact', icon: FiSettings, path: '/contact' },
 ];
 

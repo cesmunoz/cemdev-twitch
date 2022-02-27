@@ -13,6 +13,7 @@ import {
   Requests,
 } from './Pages';
 import Layout from './components/Layout';
+import Commands from './Pages/Commands';
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
                     <Route
                       path="/requests"
                       element={<Requests />}
+                    />
+                    <Route
+                      path="/commands"
+                      element={<Commands />}
                     />
                     <Route path="/" element={<Home />} />
                   </Routes>
