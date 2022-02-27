@@ -29,7 +29,7 @@ class HistoryService {
         command: 'devto',
         timestamp: '2020-01-03T00:00:00.000Z',
         user: 'cemdev',
-      }
+      },
     ];
   }
 }

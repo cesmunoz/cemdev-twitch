@@ -6022,6 +6022,13 @@ fastify-plugin@^3.0.0, fastify-plugin@^3.0.1:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-3.0.1.tgz#79e84c29f401020f38b524f59f2402103fd21ed2"
   integrity sha512-qKcDXmuZadJqdTm6vlCqioEbyewF60b/0LOFCcYN1B6BIZGlYJumWWOYs70SFYLDAH4YqdE1cxH/RKMG7rFxgA==
 
+fastify-schedule@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fastify-schedule/-/fastify-schedule-1.0.0.tgz#26dcd8ab2399d79aeaca0fa540c30948b587fbd2"
+  integrity sha512-oghFkqIKhhSD1m8iSXFR3B6NjvatT65E1BttVVV2YTcXeytm7kLnTyaTUtnsdmApXKELnszxpah+JOs5qtY5og==
+  dependencies:
+    fastify-plugin "^3.0.0"
+
 fastify-warning@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/fastify-warning/-/fastify-warning-0.2.0.tgz#e717776026a4493dc9a2befa44db6d17f618008f"
@@ -11136,6 +11143,11 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toad-scheduler@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-1.6.0.tgz#717b867d2f5da67d13d166ec16adc39d0506c537"
+  integrity sha512-+TdQhHTYLKfjXxLrAi4DgEptoQd99jUcr2teJnQrGlb70MEVrwP4SlVsaQO/dxCsNIM5qmYwZmynQd9tOPDRLQ==
 
 toggle-selection@^1.0.6:
   version "1.0.6"

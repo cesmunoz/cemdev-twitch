@@ -9,6 +9,14 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
+export type HeaderItem = {
+  key: string;
+  title: string;
+  action?: Function;
+  isKey?: boolean;
+};
+export type HeaderItems = Array<HeaderItem>;
+
 function CemTable({
   headers,
   items,
@@ -21,6 +29,10 @@ function CemTable({
   );
   const actions = headers.filter((key: any) => key.action);
 
+  const { key: keyId } = headers.find(
+    (header: any) => header.isKey,
+  );
+
   const headerItems = [
     ...titleKeys,
     ...(actions && [{ key: 'actions', title: '' }]),
@@ -29,8 +41,9 @@ function CemTable({
   return (
     <Table
       variant="striped"
-      colorScheme="teal"
-      className="min-w-full">
+      colorScheme="purple"
+      className="min-w-full"
+    >
       <Thead>
         <Tr>
           {headerItems.map((item: any) => (
@@ -42,9 +55,9 @@ function CemTable({
       </Thead>
       <Tbody>
         {items.map((item: any) => (
-          <Tr key={item.id}>
+          <Tr key={item[keyId]}>
             {titleKeys.map((key: any) => (
-              <Td key={`${item.id}-${key.key}`}>
+              <Td key={`${key.key}-${item[keyId]}`}>
                 {item[key.key]}
               </Td>
             ))}
@@ -57,10 +70,9 @@ function CemTable({
                         role="button"
                         tabIndex={index}
                         key={`${action.action}-${item.id}`}
-                        onClick={() =>
-                          action.action(item.id)
-                        }
-                        px="2">
+                        onClick={() => action.action(item.id)}
+                        px="2"
+                      >
                         {action.title}
                       </Box>
                     ),

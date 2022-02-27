@@ -1,4 +1,6 @@
 import { Client } from 'tmi.js';
+import { PARTITION_KEYS } from '../../constants';
+import DynamoDb from '../utils/DynamoDb';
 
 const handleDice = () => {
   const sides = 6;
@@ -59,38 +61,41 @@ const commandHandlers: TwitchHandleCommand = {
 */
 
 const registerEvent = (client: Client) => {
-  const handler = (
-    target: any,
-    context: any,
-    msg: any,
-    self: any,
-  ) => {
+  const handler = async (target: any, context: any, msg: any, self: any) => {
     if (self) {
       // Ignore messages from the bot
       return;
     }
 
     const commandName = msg.trim().split(' ')[0];
-    if(!commandName.startsWith("!")) {
+    if (!commandName.startsWith('!')) {
       return;
     }
 
-    const commandExists = Object.keys(commandHandlers).some(
-      (command) => command === commandName,
-    );
+    const { Items }: any = await DynamoDb.query({
+      KeyConditionExpression: 'PK = :pk',
+      ExpressionAttributeValues: {
+        ':pk': PARTITION_KEYS.COMMANDS,
+      },
+    });
 
-    if (!commandExists) {
+    const command = Items.find((item: any) => item.command === commandName);
+
+    if (!command) {
       console.log(`* Unknown command ${commandName}`);
       // TODO: Register possible future command
       return;
     }
 
-    const arg = msg.trim().replace(commandName, '');
-    const { username } = context;
+    client.say(target, command.value);
 
-    const handler = commandHandlers[commandName];
-    const result = handler(arg, username);
-    client.say(target, result);
+    // OLD BEHAVIOUR
+    // const arg = msg.trim().replace(commandName, '');
+    // const { username } = context;
+
+    // const handler = commandHandlers[commandName];
+    // const result = handler(arg, username);
+    // client.say(target, result);
   };
 
   client.on('message', handler);

@@ -14,9 +14,7 @@ const fetchCreator = async (
     },
   })
     .then((response) => response.json())
-    .catch((error) =>
-      handleErrors ? { error } : Error(error),
-    );
+    .catch((error) => (handleErrors ? { error } : Error(error)));
 
   return creator;
 };

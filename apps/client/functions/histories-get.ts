@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
-import { PARTITION_KEYS } from '../constants';
-import DynamoDb from '../utils/DynamoDb';
+import { PARTITION_KEYS } from './constants';
+import DynamoDb from './utils/DynamoDb';
 
 const handler: Handler = async (_event, _context) => {
   const {Items} = await DynamoDb.query({

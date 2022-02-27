@@ -1,4 +1,5 @@
 import {
+  FiCommand,
   FiCompass,
   FiHome,
   FiSettings,
@@ -9,7 +10,8 @@ import {
 
 const NAVIGATION_ITEMS = [
   { name: 'Home', icon: FiHome, path: '/' },
-  { name: 'Commands', icon: FiZap, path: '/commands' },
+  { name: 'Commands', icon: FiCommand, path: '/commands' },
+  { name: 'Template Cmd', icon: FiZap, path: '/commands-template' },
   { name: 'Requests', icon: FiCompass, path: '/requests' },
   { name: 'Histories', icon: FiStar, path: '/histories' },
   { name: 'About', icon: FiTrendingUp, path: '/about' },

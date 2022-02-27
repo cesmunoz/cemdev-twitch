@@ -7,16 +7,10 @@ const client = new aws.DynamoDB.DocumentClient({
 });
 
 const TABLE_NAME = process.env.DB_TABLE;
-const buildParameters = (params) => {
-  const parameters = {
+const buildParameters = (params) => ({
   TableName: TABLE_NAME,
   ...params,
-  };
-  console.log(
-    parameters
-  )
-  return parameters;
-}; 
+});
 
 export default {
   get: (params) => client.get(buildParameters(params)).promise(),
@@ -24,4 +18,12 @@ export default {
   query: (params) => client.query(buildParameters(params)).promise(),
   update: (params) => client.update(buildParameters(params)).promise(),
   delete: (params) => client.delete(buildParameters(params)).promise(),
+  insert: (model) => {
+    const params = {
+      Item: model,
+      ConditionExpression: 'attribute_not_exists(PK) AND attribute_not_exists(SK)',
+      ReturnValues: 'ALL_OLD',
+    };
+    return client.put(buildParameters(params)).promise();
+  },
 };

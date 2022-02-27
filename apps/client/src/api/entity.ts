@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import fetchCreator from './fetchCreator';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = '/api';
 
 const buildUrl = (path: string) => `${API_URL}/${path}`;
 

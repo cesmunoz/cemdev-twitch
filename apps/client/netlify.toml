@@ -1,7 +1,10 @@
 [build]
-  functions="api/"
+  functions="functions"
 
 [dev]
-  functions="api/"
-  functionsPort=8888
-  port=8080
+  functions="functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

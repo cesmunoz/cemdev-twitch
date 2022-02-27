@@ -1,15 +1,11 @@
-import {
-  FastifyError,
-  FastifyInstance,
-  FastifyPluginOptions,
-} from 'fastify';
+import { FastifyError, FastifyInstance, FastifyPluginOptions } from 'fastify';
 import HomeService from '../home/service';
 import HistoryService from '../histories/service';
 
 declare module 'fastify' {
   interface FastifyInstance {
     homeService: HomeService;
-    historyService: HistoryService
+    historyService: HistoryService;
   }
 }
 
