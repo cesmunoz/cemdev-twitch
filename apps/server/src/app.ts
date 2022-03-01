@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import registerContainer from './config/diContainer';
 import homeRoutes from './home';
 import historyRoutes from './histories';
-// import webhooks from './webhooks';
+import webhooks from './webhooks';
 import twitchBot from './twitchBot';
 
 dotenv.config();
@@ -22,7 +22,7 @@ server.get('/ping', async (_req, reply) => reply.send('pong'));
 
 server.register(fp(registerContainer));
 server.register(homeRoutes, { prefix: '/home' });
-// server.register(webhooks, { prefix: '/webhooks' });
+server.register(webhooks, { prefix: '/webhooks' });
 server.register(historyRoutes, { prefix: '/histories' });
 
 const start = async () => {
