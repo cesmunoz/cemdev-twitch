@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:ntl": "ntl dev",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "npm run format && npm run lint:fix",
@@ -37,7 +38,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "netlify-cli": "^2.19.0",
+    "netlify-cli": "^9.9.3",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.22",
