@@ -1,31 +1,31 @@
-import { Client } from 'tmi.js';
+import { ChatUserstate, Client } from 'tmi.js';
 import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
 import { Redis, DynamoDb } from '../utils';
 
 const REGEXP_COMMAND = /\{(.*)\}/;
 
-const handleDice = () => {
-  const sides = 6;
-  const result = Math.floor(Math.random() * sides) + 1;
-  return `You rolled a ${result}`;
-};
-
-type TwitchHandleCommand = {
-  [key: string]: (_arg: any, user: any) => string;
-};
-
-const commandHandlers: TwitchHandleCommand = {
-  '!dice': handleDice,
-  // "!uptime": handleUptime,
-  // "!setup": handleSetups,
-  // "!horarios": handleSchedule,
-};
 // TODO: better handler commands
 /*
 !uptime
 !setup
 !horarios
 */
+
+// const commandHandlers: TwitchHandleCommand = {
+//   '!dice': handleDice,
+// };
+// const handleDice = () => {
+//   const sides = 6;
+//   const result = Math.floor(Math.random() * sides) + 1;
+//   return `You rolled a ${result}`;
+// };
+
+type CommandType = {
+  PK: string;
+  SK: string;
+  command: string;
+  value: string;
+};
 
 const DAY_IN_SECONDS = 86400;
 
@@ -54,7 +54,12 @@ const getCommands = async () => {
 };
 
 const registerEvent = (client: Client) => {
-  const handler = async (target: any, context: any, msg: any, self: any) => {
+  const handler = async (
+    target: string,
+    context: ChatUserstate,
+    msg: string,
+    self: boolean,
+  ) => {
     if (self) {
       // Ignore messages from the bot
       return;
@@ -65,11 +70,11 @@ const registerEvent = (client: Client) => {
       return;
     }
 
-    const commandItems: any = await getCommands();
+    const commandItems: Array<CommandType> = await getCommands();
 
     if (commandName === '!help') {
       const helpMessage = commandItems
-        .map((item: any) => item.command)
+        .map((item: CommandType) => item.command)
         .join(' || ');
       return client.say(
         target,
@@ -78,7 +83,7 @@ const registerEvent = (client: Client) => {
     }
 
     const command = commandItems.find(
-      (item: any) => item.command === commandName,
+      (item: CommandType) => item.command === commandName,
     );
 
     if (!command) {
@@ -87,7 +92,8 @@ const registerEvent = (client: Client) => {
       return;
     }
 
-    const matches: any = command.value.match(REGEXP_COMMAND);
+    const matches: RegExpMatchArray | null =
+      command.value.match(REGEXP_COMMAND);
 
     if (!matches) {
       return client.say(target, command.value);

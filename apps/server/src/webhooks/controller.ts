@@ -2,41 +2,28 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import crypto from 'crypto';
 
 type TwitchRequest = FastifyRequest<{
-  Headers: any;
+  Headers: {
+    'Twitch-Eventsub-Message-Type': string;
+    'Twitch-eventsub-message-timestamp': number;
+    'Twitch-eventsub-message-id': string;
+  };
   Body: {
-    challenge: any;
-    subscription: {
-      id: string;
-      status: string;
-      version: string;
-      type: string;
-      condition: {
-        broardcaster_user_id: string;
-      };
-      transport: {
-        method: string;
-        callback: string;
-      };
-    };
+    challenge: string;
     event: {
-      user_id: string;
-      user_login: string;
-      user_name: string;
-      broadcaster_user_id: string;
-      broadcaster_use_login: string;
       broadcaster_user_name: string;
-      tier: string;
-      is_gift: boolean;
+    };
+    subscription: {
+      type: string;
     };
   };
 }>;
 
-const verifyTwitchSignature = (req: any) => {
+const verifyTwitchSignature = (req: TwitchRequest) => {
   const { TWITCH_SIGNING_SECRET } = process.env;
 
-  const messageId = req.headers['twitch-eventsub-message-id'];
-  const timestamp = req.headers['twitch-eventsub-message-timestamp'];
-  const messageSignature = req.headers['twitch-eventsub-message-signature'];
+  const messageId = req.headers['Twitch-eventsub-message-id'];
+  const timestamp = req.headers['Twitch-eventsub-message-timestamp'];
+  const messageSignature = req.headers['Twitch-eventsub-message-signature'];
 
   const time = Math.floor(new Date().getTime() / 1000);
   console.log(`Message ${messageId} Signature: `, messageSignature);

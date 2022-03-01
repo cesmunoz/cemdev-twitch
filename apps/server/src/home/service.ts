@@ -1,6 +1,6 @@
 class HomeService {
-  private homeCollection: any;
-  constructor(homeCollection: any) {
+  private homeCollection: object;
+  constructor(homeCollection: object) {
     this.homeCollection = homeCollection;
   }
 

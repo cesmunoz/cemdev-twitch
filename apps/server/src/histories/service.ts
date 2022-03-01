@@ -1,6 +1,6 @@
 class HistoryService {
-  private historyCollection: any;
-  constructor(historyCollection: any) {
+  private historyCollection: object;
+  constructor(historyCollection: object) {
     this.historyCollection = historyCollection;
   }
 

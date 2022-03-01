@@ -9,9 +9,9 @@
     "build": "tsc -p tsconfig.json",
     "dev": "nodemon --config nodemon.json src/app.ts",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/app.ts",
-    "lint": "eslint ./src/**/*.ts",
+    "lint": "npm run format && npm run lint:fix",
     "lint:fix": "eslint --fix ./src/**/*.ts",
-    "format": "prettier --write './src/**/*.{ts,json}' --config .prettierrc"
+    "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc"
   },
   "keywords": [],
   "author": "",
