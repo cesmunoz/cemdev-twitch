@@ -43,7 +43,8 @@ function Header({ onOpen, ...rest }: MobileProps) {
         md: 'flex-end',
       }}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}>
+      {...rest}
+    >
       <IconButton
         display={{ base: 'flex', md: 'none' }}
         onClick={onOpen}
@@ -56,7 +57,8 @@ function Header({ onOpen, ...rest }: MobileProps) {
         display={{ base: 'flex', md: 'none' }}
         fontSize="2xl"
         fontFamily="monospace"
-        fontWeight="bold">
+        fontWeight="bold"
+      >
         {constants.APP_NAME}
       </Text>
 
@@ -72,7 +74,8 @@ function Header({ onOpen, ...rest }: MobileProps) {
             <MenuButton
               py={2}
               transition="all 0.3s"
-              _focus={{ boxShadow: 'none' }}>
+              _focus={{ boxShadow: 'none' }}
+            >
               <HStack>
                 <Avatar
                   size="sm"
@@ -82,7 +85,8 @@ function Header({ onOpen, ...rest }: MobileProps) {
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
-                  ml="2">
+                  ml="2"
+                >
                   <Text fontSize="sm">CemDev</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
@@ -98,7 +102,8 @@ function Header({ onOpen, ...rest }: MobileProps) {
               borderColor={useColorModeValue(
                 'gray.200',
                 'gray.700',
-              )}>
+              )}
+            >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>

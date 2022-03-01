@@ -22,7 +22,8 @@ NavItemProps) {
   return (
     <LinkRouter
       to={path}
-      style={{ textDecoration: 'none' }}>
+      style={{ textDecoration: 'none' }}
+    >
       <Flex
         align="center"
         p="4"
@@ -35,7 +36,8 @@ NavItemProps) {
           color: 'white',
         }}
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}>
+        {...rest}
+      >
         {icon && (
           <Icon
             mr="4"

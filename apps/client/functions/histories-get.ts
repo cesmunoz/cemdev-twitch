@@ -3,11 +3,11 @@ import { PARTITION_KEYS } from './constants';
 import DynamoDb from './utils/DynamoDb';
 
 const handler: Handler = async (_event, _context) => {
-  const {Items} = await DynamoDb.query({
+  const { Items } = await DynamoDb.query({
     KeyConditionExpression: 'PK = :pk',
     ExpressionAttributeValues: {
-      ":pk": PARTITION_KEYS.HISTORIES
-    }
+      ':pk': PARTITION_KEYS.HISTORIES,
+    },
   });
 
   return {

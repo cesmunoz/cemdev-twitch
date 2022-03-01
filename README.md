@@ -15,5 +15,5 @@
 - DotEnv
 - Eslint
 - Prettier
-- TMI
+- TMI.js
 - Nodemon

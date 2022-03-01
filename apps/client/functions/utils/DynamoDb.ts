@@ -21,7 +21,8 @@ export default {
   insert: (model) => {
     const params = {
       Item: model,
-      ConditionExpression: 'attribute_not_exists(PK) AND attribute_not_exists(SK)',
+      ConditionExpression:
+        'attribute_not_exists(PK) AND attribute_not_exists(SK)',
       ReturnValues: 'ALL_OLD',
     };
     return client.put(buildParameters(params)).promise();

@@ -6,9 +6,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint ./src/**/*.ts ./src/**/*.tsx ./api/**/*.ts",
-    "lint:fix": "eslint --fix ./src/**/*.ts ./src/**/*.tsx ./api/**/*.ts",
-    "format": "prettier --write \"src/**/*.{tsx,ts,js,json}\"  \"./api/**/*.ts\" --config .prettierrc"
+    "lint": "npm run format && npm run lint:fix",
+    "lint:fix": "eslint --fix ./src/**/*.ts ./src/**/*.tsx ./functions/**/*.ts",
+    "format": "prettier --write src/**/*.{tsx,ts,js,json} ./functions/**/*.ts --config .prettierrc"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.5",

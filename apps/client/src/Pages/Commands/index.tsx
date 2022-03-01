@@ -1,68 +1,52 @@
-import {
-  Button,
-  Flex,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { createOne, getAll } from '../../api/entity';
-import { Table } from '../../components/Common';
-import { HeaderItems } from '../../components/Common/Table';
+import {
+  CommandsProvider,
+  useCommandsContext,
+} from './CommandsContext';
+import CommandsList from './CommandsList';
 import CommandDialogForm from './CommandDialogForm';
 
-function Commands() {
-  // eslint-disable-next-line no-unused-vars
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [requestList, setRequestList] = useState([]);
+function CommandsContainer() {
+  const {
+    commands,
+    setCommands,
+    openCommandsDialog,
+    showDialog,
+    addCommand,
+  } = useCommandsContext();
 
   useEffect(() => {
-    getAll('commands-get').then((response:any) => setRequestList(response));
-  }, []);
+    getAll('commands-get').then((response: any) => setCommands(response));
+  }, [setCommands]);
 
-  const handleEdit = (id: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Handle Approve', id);
-  };
-  const handleDelete = (id: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Handle Decline', id);
-  };
+  const handleOpen = () => openCommandsDialog(true);
+  const handleClose = () => openCommandsDialog(false);
 
   const handleSave = (model: any) => {
-    createOne('commands-post', model).then((response) => {
-      setRequestList([...requestList, response]);
-    });
+    createOne('commands-post', model).then((response) => addCommand(response));
   };
-
-  const HEADERS: HeaderItems = [
-    { key: 'command', title: 'Command', isKey: true },
-    { key: 'value', title: 'Value' },
-    {
-      key: 'edit',
-      title: 'Edit',
-      action: handleEdit,
-    },
-    {
-      key: 'delete',
-      title: 'Delete',
-      action: handleDelete,
-    },
-  ];
 
   return (
     <>
-      <Flex direction="column" alignItems="flex-end" pb="2">
-        <Button onClick={onOpen} colorScheme="purple">
-          Add
-        </Button>
-        <Table headers={HEADERS} items={requestList} />
-      </Flex>
+      <CommandsList
+        commands={commands}
+        onOpen={handleOpen}
+      />
       <CommandDialogForm
-        onOpen={onOpen}
-        onClose={onClose}
-        isOpen={isOpen}
+        onClose={handleClose}
+        isOpen={showDialog}
         onSave={handleSave}
       />
     </>
+  );
+}
+
+function Commands() {
+  return (
+    <CommandsProvider>
+      <CommandsContainer />
+    </CommandsProvider>
   );
 }
 

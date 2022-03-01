@@ -23,33 +23,30 @@ function App() {
         <BrowserRouter>
           <Layout>
             <div id="container">
-                <Routes>
-                  <Route
-                    path="/about"
-                    element={<About />}
-                  />
-                  <Route
-                    path="/contact"
-                    element={<Contact />}
-                  />
-                  <Route
-                    path="/histories"
-                    element={<Histories />}
-                  />
-                  <Route
-                    path="/requests"
-                    element={<Requests />}
-                  />
-                  <Route
-                    path="/commands"
-                    element={<Commands />}
-                  />
-                  <Route
-                    path="/commands-template"
-                    element={<CommandsTemplate />}
-                  />
-                  <Route path="/" element={<Home />} />
-                </Routes>
+              <Routes>
+                <Route path="/about" element={<About />} />
+                <Route
+                  path="/contact"
+                  element={<Contact />}
+                />
+                <Route
+                  path="/histories"
+                  element={<Histories />}
+                />
+                <Route
+                  path="/requests"
+                  element={<Requests />}
+                />
+                <Route
+                  path="/commands"
+                  element={<Commands />}
+                />
+                <Route
+                  path="/commands-template"
+                  element={<CommandsTemplate />}
+                />
+                <Route path="/" element={<Home />} />
+              </Routes>
             </div>
           </Layout>
         </BrowserRouter>

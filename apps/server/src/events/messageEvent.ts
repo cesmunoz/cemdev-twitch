@@ -2,35 +2,13 @@ import { Client } from 'tmi.js';
 import { PARTITION_KEYS } from '../../constants';
 import DynamoDb from '../utils/DynamoDb';
 
+const REGEXP_COMMAND = /\{(.*)\}/;
+
 const handleDice = () => {
   const sides = 6;
   const result = Math.floor(Math.random() * sides) + 1;
   return `You rolled a ${result}`;
 };
-
-const handleTwitter = () =>
-  'Por favor sigueme por twitter! https://twitter.com/cesmdev';
-const handleDevTo = () =>
-  'Quieres leer mis articulos? Pasate por Dev.to https://dev.to/cemdev';
-const handleInstagram = () =>
-  'Quieres ver lo que hago en el dia? Pasate por instagram https://www.instagram.com/cesmdev/';
-const handleYouTube = () => 'Todavia no hay youtube Kappa';
-const handleTikTok = () =>
-  'Tenemos TikTok! Entra a https://www.tiktok.com/@cesmdev';
-const handleDiscord = () =>
-  'Ingresa al discord de la comunidad! https://discord.gg/9FdNqwqurY';
-const handleSilence = (msg: any) => {
-  const user = msg.trim().split(' ')[0];
-  // TODO: Search for user?
-  return `No seas malo Kappa. Como vas a silenciar a ${user}?`;
-};
-
-const handleGreetings = (_arg: any, user: any) =>
-  `Bienvenido al stream ${user}!!`;
-const handleGoodBye = (_arg: any, user: any) =>
-  `Muchas gracias por haber estado en el stream ${user}! Nos vemos la proxima`;
-const handleToday = (_arg: any, user: any) =>
-  `Por que no le explicas cemdev a ${user} que vas hacer hoy?`;
 
 type TwitchHandleCommand = {
   [key: string]: (_arg: any, user: any) => string;
@@ -38,24 +16,13 @@ type TwitchHandleCommand = {
 
 const commandHandlers: TwitchHandleCommand = {
   '!dice': handleDice,
-  '!discord': handleDiscord,
-  '!twitter': handleTwitter,
-  '!devto': handleDevTo,
-  '!instagram': handleInstagram,
-  '!youtube': handleYouTube,
-  '!tiktok': handleTikTok,
-  '!silenciar': handleSilence,
-  '!saludar': handleGreetings,
-  '!adios': handleGoodBye,
   // "!uptime": handleUptime,
-  '!hoy': handleToday,
   // "!setup": handleSetups,
   // "!horarios": handleSchedule,
 };
 // TODO: better handler commands
 /*
 !uptime
-!hoy
 !setup
 !horarios
 */
@@ -79,6 +46,11 @@ const registerEvent = (client: Client) => {
       },
     });
 
+    if(commandName === '!help') {
+      const helpMessage = Items.map((item:any) => item.command).join(' || ')
+      return client.say(target, `Los commandos habilitados son: ${helpMessage}`);
+    }
+
     const command = Items.find((item: any) => item.command === commandName);
 
     if (!command) {
@@ -87,15 +59,16 @@ const registerEvent = (client: Client) => {
       return;
     }
 
-    client.say(target, command.value);
+    const matches: any = command.value.match(REGEXP_COMMAND);
+    console.log(matches);
 
-    // OLD BEHAVIOUR
-    // const arg = msg.trim().replace(commandName, '');
-    // const { username } = context;
+    if (!matches) {
+      return client.say(target, command.value);
+    }
 
-    // const handler = commandHandlers[commandName];
-    // const result = handler(arg, username);
-    // client.say(target, result);
+    const [commandKeyTemplate, commandKeyValue] = matches;
+    const message = command.value.replace(commandKeyTemplate, context[commandKeyValue])
+    client.say(target, message);
   };
 
   client.on('message', handler);
