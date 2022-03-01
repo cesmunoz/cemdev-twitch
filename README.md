@@ -17,3 +17,4 @@
 - Prettier
 - TMI.js
 - Nodemon
+- Upstash

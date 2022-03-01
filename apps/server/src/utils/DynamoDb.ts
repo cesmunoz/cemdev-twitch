@@ -10,18 +10,18 @@ const client = new aws.DynamoDB.DocumentClient({
 });
 
 const TABLE_NAME = process.env.DB_TABLE;
-const buildParameters = (params:any) => ({
+const buildParameters = (params: any) => ({
   TableName: TABLE_NAME,
   ...params,
 });
 
 export default {
-  get: (params:any) => client.get(buildParameters(params)).promise(),
-  put: (params:any) => client.put(buildParameters(params)).promise(),
-  query: (params:any) => client.query(buildParameters(params)).promise(),
-  update: (params:any) => client.update(buildParameters(params)).promise(),
-  delete: (params:any) => client.delete(buildParameters(params)).promise(),
-  insert: (model:any) => {
+  get: (params: any) => client.get(buildParameters(params)).promise(),
+  put: (params: any) => client.put(buildParameters(params)).promise(),
+  query: (params: any) => client.query(buildParameters(params)).promise(),
+  update: (params: any) => client.update(buildParameters(params)).promise(),
+  delete: (params: any) => client.delete(buildParameters(params)).promise(),
+  insert: (model: any) => {
     const params = {
       Item: model,
       ConditionExpression:

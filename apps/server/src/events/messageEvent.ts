@@ -1,6 +1,6 @@
 import { Client } from 'tmi.js';
-import { PARTITION_KEYS } from '../../constants';
-import DynamoDb from '../utils/DynamoDb';
+import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
+import { Redis, DynamoDb } from '../utils';
 
 const REGEXP_COMMAND = /\{(.*)\}/;
 
@@ -27,6 +27,32 @@ const commandHandlers: TwitchHandleCommand = {
 !horarios
 */
 
+const DAY_IN_SECONDS = 86400;
+
+const getCommands = async () => {
+  const items = await Redis.get(REDIS_KEYS.COMMANDS);
+
+  if (items) {
+    console.log('RETRIEVE FROM CACHE');
+    return JSON.parse(items);
+  }
+
+  const { Items } = await DynamoDb.query({
+    KeyConditionExpression: 'PK = :pk',
+    ExpressionAttributeValues: {
+      ':pk': PARTITION_KEYS.COMMANDS,
+    },
+  });
+
+  await Redis.setWithExp(
+    REDIS_KEYS.COMMANDS,
+    JSON.stringify(Items),
+    DAY_IN_SECONDS,
+  );
+
+  return Items;
+};
+
 const registerEvent = (client: Client) => {
   const handler = async (target: any, context: any, msg: any, self: any) => {
     if (self) {
@@ -39,22 +65,21 @@ const registerEvent = (client: Client) => {
       return;
     }
 
-    const { Items }: any = await DynamoDb.query({
-      KeyConditionExpression: 'PK = :pk',
-      ExpressionAttributeValues: {
-        ':pk': PARTITION_KEYS.COMMANDS,
-      },
-    });
+    const commandItems: any = await getCommands();
 
     if (commandName === '!help') {
-      const helpMessage = Items.map((item: any) => item.command).join(' || ');
+      const helpMessage = commandItems
+        .map((item: any) => item.command)
+        .join(' || ');
       return client.say(
         target,
         `Los commandos habilitados son: ${helpMessage}`,
       );
     }
 
-    const command = Items.find((item: any) => item.command === commandName);
+    const command = commandItems.find(
+      (item: any) => item.command === commandName,
+    );
 
     if (!command) {
       console.log(`* Unknown command ${commandName}`);

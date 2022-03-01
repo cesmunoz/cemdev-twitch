@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
-import { PARTITION_KEYS } from './constants';
-import DynamoDb from './utils/DynamoDb';
+import { PARTITION_KEYS, REDIS_KEYS } from './constants';
+import { Redis, DynamoDb } from './utils';
 
 const handler: Handler = async (event, context) => {
   const { command, value } = JSON.parse(event.body);
@@ -16,6 +16,8 @@ const handler: Handler = async (event, context) => {
 
   delete model.PK;
   delete model.SK;
+
+  await Redis.delete(REDIS_KEYS.COMMANDS);
 
   return {
     statusCode: 200,
