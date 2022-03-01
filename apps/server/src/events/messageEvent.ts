@@ -46,9 +46,12 @@ const registerEvent = (client: Client) => {
       },
     });
 
-    if(commandName === '!help') {
-      const helpMessage = Items.map((item:any) => item.command).join(' || ')
-      return client.say(target, `Los commandos habilitados son: ${helpMessage}`);
+    if (commandName === '!help') {
+      const helpMessage = Items.map((item: any) => item.command).join(' || ');
+      return client.say(
+        target,
+        `Los commandos habilitados son: ${helpMessage}`,
+      );
     }
 
     const command = Items.find((item: any) => item.command === commandName);
@@ -60,14 +63,16 @@ const registerEvent = (client: Client) => {
     }
 
     const matches: any = command.value.match(REGEXP_COMMAND);
-    console.log(matches);
 
     if (!matches) {
       return client.say(target, command.value);
     }
 
     const [commandKeyTemplate, commandKeyValue] = matches;
-    const message = command.value.replace(commandKeyTemplate, context[commandKeyValue])
+    const message = command.value.replace(
+      commandKeyTemplate,
+      context[commandKeyValue],
+    );
     client.say(target, message);
   };
 
