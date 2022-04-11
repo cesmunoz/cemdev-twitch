@@ -1,1 +1,1 @@
-worker: yarn workspace server start
+worker: npm start
