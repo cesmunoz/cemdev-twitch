@@ -11,7 +11,8 @@
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/app.ts",
     "lint": "npm run format && npm run lint:fix",
     "lint:fix": "eslint --fix ./src/**/*.ts",
-    "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc"
+    "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc",
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",

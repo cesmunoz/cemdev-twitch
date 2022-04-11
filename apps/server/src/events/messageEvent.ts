@@ -33,14 +33,13 @@ const getCommands = async () => {
   const items = await Redis.get(REDIS_KEYS.COMMANDS);
 
   if (items) {
-    console.log('RETRIEVE FROM CACHE');
     return JSON.parse(items);
   }
 
   const { Items } = await DynamoDb.query({
     KeyConditionExpression: 'PK = :pk',
     ExpressionAttributeValues: {
-      ':pk': PARTITION_KEYS.COMMANDS,
+      ":pk": 'COMMANDS',
     },
   });
 

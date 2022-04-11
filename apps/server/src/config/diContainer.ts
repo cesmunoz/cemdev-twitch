@@ -14,10 +14,10 @@ async function registerContainer(
   _options: FastifyPluginOptions,
   done: (err?: FastifyError) => void,
 ) {
-  const homeService = new HomeService(1);
+  const homeService = new HomeService({});
   fastify.decorate('homeService', homeService);
 
-  const historyService = new HistoryService(1);
+  const historyService = new HistoryService({});
   fastify.decorate('historyService', historyService);
 
   done();

@@ -33,7 +33,7 @@ export default {
         TableName: TABLE_NAME,
       })
       .promise(),
-  query: (params: QueryInput) =>
+  query: (params: any) =>
     client
       .query({
         ...params,
