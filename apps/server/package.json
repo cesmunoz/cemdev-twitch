@@ -12,6 +12,7 @@
     "lint": "npm run format && npm run lint:fix",
     "lint:fix": "eslint --fix ./src/**/*.ts",
     "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc",
+    "heroku-postbuild": "npm run build",
     "start": "node dist/app.js"
   },
   "keywords": [],
