@@ -20,7 +20,8 @@
     "lint:server": "turbo run lint --scope=server",
     "lint:fix": "turbo run lint:fix",
     "lint:fix:client": "turbo run lint:fix --scope=client",
-    "lint:fix:server": "turbo run lint:fix --scope=server"
+    "lint:fix:server": "turbo run lint:fix --scope=server",
+    "bot": "cd apps/server && npm run build && npm start"
   },
   "repository": {
     "type": "git",

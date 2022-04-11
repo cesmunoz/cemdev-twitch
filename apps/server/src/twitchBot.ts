@@ -22,6 +22,7 @@ const connect = async () => {
   const twitchClient = getClient();
   registerTwitchEvents(twitchClient);
   await twitchClient.connect();
+  twitchClient.say("cemdev","c3mbot connected! Kappa");
 };
 
 export default {

@@ -1,1 +1,1 @@
-worker: cd apps/server && npm i && npm run build && npm start
+worker: npm run bot
