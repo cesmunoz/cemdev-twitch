@@ -2,7 +2,7 @@ import { Handler } from '@netlify/functions';
 import { PARTITION_KEYS } from './constants';
 import DynamoDb from './utils/DynamoDb';
 
-const handler: Handler = async (_event, _context) => {
+const handler: Handler = async () => {
   const { Items } = await DynamoDb.query({
     KeyConditionExpression: 'PK = :pk',
     ExpressionAttributeValues: {
@@ -16,5 +16,4 @@ const handler: Handler = async (_event, _context) => {
   };
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { handler };
+export default { handler };

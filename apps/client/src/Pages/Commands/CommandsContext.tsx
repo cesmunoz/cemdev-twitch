@@ -11,6 +11,22 @@ const TOGGLE_COMMAND = 'TOGGLE_COMMAND';
 const SET_COMMANDS = 'SET_COMMANDS';
 const SHOW_DIALOG = 'SHOW_DIALOG';
 
+export type CommandType = {
+  command: string;
+  value: string;
+};
+
+export type CommandsContextType = {
+  commands: Array<CommandType>;
+  showDialog: boolean;
+  addCommand: Function;
+  editCommand: Function;
+  removeCommand: Function;
+  toggleCommand: Function;
+  setCommands: Function;
+  openCommandsDialog: Function;
+};
+
 const initialContext = {
   commands: [],
   showDialog: false,
@@ -19,7 +35,7 @@ const initialContext = {
 export const CommandsContext = createContext(null);
 CommandsContext.displayName = 'CommandsContext';
 
-export function useCommandsContext() {
+export function useCommandsContext(): CommandsContextType {
   const context = useContext(CommandsContext);
   if (!context) {
     throw new Error(
@@ -30,7 +46,7 @@ export function useCommandsContext() {
   return context;
 }
 
-const orderCommands = (a: any, b: any) => (a.command > b.command ? 1 : -1);
+const orderCommands = (a: CommandType, b: CommandType) => (a.command > b.command ? 1 : -1);
 
 function CommandsReducer(state: any, action: any) {
   const { type, payload } = action;
@@ -57,7 +73,7 @@ function CommandsReducer(state: any, action: any) {
     }
     case REMOVE_COMMAND: {
       const list = state.commands.filter(
-        (command: any) => command.command !== payload.command,
+        (command: any) => command.command !== payload,
       );
 
       return {
@@ -94,38 +110,32 @@ function CommandsReducer(state: any, action: any) {
 }
 
 export function CommandsProvider(props: any) {
-  // eslint-disable-next-line no-use-before-define
+  const [state, dispatch] = useReducer(
+    CommandsReducer,
+    initialContext,
+  );
+
   const addCommand = (command: any) => dispatch({ type: ADD_COMMAND, payload: command });
-
-  // eslint-disable-next-line no-use-before-define
   const editCommand = (command: any) => dispatch({ type: EDIT_COMMAND, payload: command });
-
-  // eslint-disable-next-line no-use-before-define
   const removeCommand = (command: any) => dispatch({ type: REMOVE_COMMAND, payload: command });
-
-  // eslint-disable-next-line no-use-before-define
   const toggleCommand = (command: any) => dispatch({ type: TOGGLE_COMMAND, payload: command });
-
-  // eslint-disable-next-line no-use-before-define
   const setCommands = (command: any) => dispatch({ type: SET_COMMANDS, payload: command });
-
   const openCommandsDialog = (showDialog: any) => {
     const payload = showDialog;
-    // eslint-disable-next-line no-use-before-define
     return dispatch({ type: SHOW_DIALOG, payload });
   };
 
-  const [state, dispatch] = useReducer(CommandsReducer, {
-    ...initialContext,
+  const value = {
+    ...state,
     addCommand,
     editCommand,
     removeCommand,
     toggleCommand,
     setCommands,
     openCommandsDialog,
-  });
+  };
 
   return (
-    <CommandsContext.Provider value={state} {...props} />
+    <CommandsContext.Provider value={value} {...props} />
   );
 }

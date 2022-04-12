@@ -69,8 +69,8 @@ function CemTable({
                       <Box
                         role="button"
                         tabIndex={index}
-                        key={`${action.action}-${item.id}`}
-                        onClick={() => action.action(item.id)}
+                        key={`${action.action}-${item[keyId]}`}
+                        onClick={() => action.action(item[keyId])}
                         px="2"
                       >
                         {action.title}

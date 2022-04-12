@@ -5,32 +5,26 @@ import { HeaderItems } from '../../components/Common/Table';
 function CommandsList({
   commands,
   onOpen,
+  onEdit,
+  onDelete,
 }: {
-  commands: any;
+  commands: Array<{ command: string; value: string }>;
   onOpen: any;
+  onEdit: Function;
+  onDelete: Function;
 }) {
-  const handleEdit = (id: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Handle Approve', id);
-  };
-
-  const handleDelete = (id: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Handle Decline', id);
-  };
-
   const HEADERS: HeaderItems = [
     { key: 'command', title: 'Command', isKey: true },
     { key: 'value', title: 'Value' },
     {
       key: 'edit',
       title: 'Edit',
-      action: handleEdit,
+      action: onEdit,
     },
     {
       key: 'delete',
       title: 'Delete',
-      action: handleDelete,
+      action: onDelete,
     },
   ];
 

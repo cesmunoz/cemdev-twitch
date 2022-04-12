@@ -1,5 +1,4 @@
 import {
-  useDisclosure,
   Button,
   Modal,
   ModalOverlay,
@@ -14,13 +13,19 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 
+type CommandDialogFormType = {
+  isOpen: boolean;
+  onClose: Function;
+  onSave: Function;
+  id: string;
+};
+
 function CommandDialogForm({
   isOpen,
-  onOpen,
   onClose,
   onSave,
   id,
-}) {
+}: CommandDialogFormType) {
   const initialRef = useRef();
   const finalRef = useRef();
   const [command, setCommand] = useState('');
@@ -46,6 +51,14 @@ function CommandDialogForm({
       command,
       value,
     });
+    setCommand('');
+    setValue('');
+  };
+
+  const handleClose = () => {
+    setCommand('');
+    setValue('');
+    onClose();
   };
 
   return (
@@ -53,7 +66,7 @@ function CommandDialogForm({
       initialFocusRef={initialRef}
       finalFocusRef={finalRef}
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
     >
       <ModalOverlay />
       <ModalContent>
@@ -89,7 +102,7 @@ function CommandDialogForm({
           >
             Save
           </Button>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={handleClose}>Cancel</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

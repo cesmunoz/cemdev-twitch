@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     "plugin:import/typescript",
-    'airbnb',
+    'airbnb-typescript',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -34,7 +34,10 @@ module.exports = {
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/camelcase": "off",
   },
   settings: {
     'import/resolver': {

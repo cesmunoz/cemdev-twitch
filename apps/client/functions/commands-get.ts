@@ -25,11 +25,26 @@ const getCommands = async () => {
   return Items;
 };
 
+type Commands = {
+  PK: string;
+  SK: string;
+  command: string;
+  value: string;
+};
+
+type CommandsResponse = Omit<Commands, 'PK' | 'SK'>;
+
 const handler: Handler = async () => {
-  const items = await getCommands();
+  const items: CommandsResponse[] = await getCommands();
+  const response = items.map(
+    ({ command, value }) => ({
+      command,
+      value,
+    }),
+  );
   return {
     statusCode: 200,
-    body: JSON.stringify(items),
+    body: JSON.stringify(response),
   };
 };
 
