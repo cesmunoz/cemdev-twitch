@@ -17,7 +17,11 @@ jobs:
       HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
     steps:
       - name: 'Install heroku'
-        run: sudo apt get update && sudo apt install heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
       - name: 'Heroku login credentials'
         run: |
           cat > ~/.netrc <<EOF
