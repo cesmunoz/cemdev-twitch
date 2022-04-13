@@ -1,0 +1,42 @@
+name: "Twitch Bot Enable/Disable"
+
+on:
+  workflow_dispatch:
+    inputs:
+      enabled:
+        description: 'Enable bot'
+        required: true
+        default: "true"
+
+jobs:
+  enabled:
+    runs-on: ubuntu-latest
+    env: 
+      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      HEROKU_APP_NAME: ${{secrets.HEROKU_APP_NAME}}
+      HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
+    steps:
+      - name: 'Install heroku'
+        run: sudo apt get update && sudo apt install heroku
+      - name: 'Heroku login credentials'
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
+      - name: 'Enable bot'
+        if:  ${{ github.event.inputs.enabled == 'true' }} 
+        run: |
+          echo 'Enable bot'
+          heroku ps:scale worker=1 -a=cemdev-twitch-bot
+      - name: 'Disable bot'
+        if:  ${{ github.event.inputs.enabled == 'false' }} 
+        run: |
+          echo 'Disable bot'
+          heroku ps:scale worker=0 -a=cemdev-twitch-bo
+
+
