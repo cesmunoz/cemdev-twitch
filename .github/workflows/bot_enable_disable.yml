@@ -37,11 +37,11 @@ jobs:
         if:  ${{ github.event.inputs.enabled == 'true' }} 
         run: |
           echo 'Enable bot'
-          heroku ps:scale worker=1 -a=cemdev-twitch-bot
+          heroku ps:scale worker=1 -a=$HEROKU_APP_NAME
       - name: 'Disable bot'
         if:  ${{ github.event.inputs.enabled == 'false' }} 
         run: |
           echo 'Disable bot'
-          heroku ps:scale worker=0 -a=cemdev-twitch-bo
+          heroku ps:scale worker=0 -a=$HEROKU_APP_NAME
 
 
