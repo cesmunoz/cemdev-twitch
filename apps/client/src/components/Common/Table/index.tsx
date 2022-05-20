@@ -47,9 +47,7 @@ function CemTable({
       <Thead>
         <Tr>
           {headerItems.map((item: any) => (
-            <Th key={item.key} scope="col">
-              {item.title}
-            </Th>
+            !item.hidden && (<Th key={item.key} scope="col">{item.title}</Th>)
           ))}
         </Tr>
       </Thead>
@@ -57,9 +55,7 @@ function CemTable({
         {items.map((item: any) => (
           <Tr key={item[keyId]}>
             {titleKeys.map((key: any) => (
-              <Td key={`${key.key}-${item[keyId]}`}>
-                {item[key.key]}
-              </Td>
+              !key.hidden && (<Td key={`${key.key}-${item[keyId]}`}>{item[key.key]}</Td>)
             ))}
             {actions.length > 0 && (
               <Td>

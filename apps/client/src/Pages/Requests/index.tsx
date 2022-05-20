@@ -1,28 +1,19 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { getAll } from '../../api/entity';
 import { Table } from '../../components/Common';
+import {
+  RequestProvider,
+  useRequestContext,
+} from './RequestsContext';
 
-function Requests() {
-  // eslint-disable-next-line no-unused-vars
-  const [requestList, setRequestList] = useState([
-    {
-      id: 1,
-      request: 'explicar reduce un dia',
-      timestamp: '2020-01-01T00:00:00.000Z',
-      user: 'cemdev',
-    },
-    {
-      id: 2,
-      request: 'programa en angularjs',
-      timestamp: '2020-01-02T00:00:00.000Z',
-      user: 'cemdev',
-    },
-    {
-      id: 3,
-      request: 'podes explicarnos cqrs',
-      timestamp: '2020-01-03T00:00:00.000Z',
-      user: 'cemdev',
-    },
-  ]);
+function RequestContainer() {
+  const { requests, setRequests } = useRequestContext();
+
+  useEffect(() => {
+    getAll('requests-get').then((response: any) => {
+      setRequests(response);
+    });
+  }, []);
 
   const handleApprove = (id: any) => {
     // eslint-disable-next-line no-console
@@ -34,9 +25,9 @@ function Requests() {
   };
 
   const HEADERS = [
-    { key: 'user', title: 'User' },
-    { key: 'request', title: 'Request', isKey: true },
-    { key: 'timestamp', title: 'Timestamp' },
+    { key: 'id', isKey: true, hidden: true },
+    { key: 'username', title: 'Username' },
+    { key: 'value', title: 'Request' },
     {
       key: 'approve',
       title: 'Approve',
@@ -49,7 +40,19 @@ function Requests() {
     },
   ];
 
-  return <Table headers={HEADERS} items={requestList} />;
+  return (
+    <RequestProvider>
+      <Table headers={HEADERS} items={requests} />
+    </RequestProvider>
+  );
+}
+
+function Requests() {
+  return (
+    <RequestProvider>
+      <RequestContainer />
+    </RequestProvider>
+  );
 }
 
 export default Requests;
