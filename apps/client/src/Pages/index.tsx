@@ -4,7 +4,6 @@ import Home from './Home';
 import Histories from './Histories';
 import Requests from './Requests';
 import Commands from './Commands';
-import CommandsTemplate from './CommandsTemplate';
 
 export {
   About,
@@ -13,5 +12,4 @@ export {
   Histories,
   Requests,
   Commands,
-  CommandsTemplate,
 };

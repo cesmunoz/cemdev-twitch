@@ -14,6 +14,9 @@
     "lint:fix": { "outputs": [] },
     "dev": {
       "cache": false
+    },
+    "dev:ntl": {
+      "cache": false
     }
   }
 }

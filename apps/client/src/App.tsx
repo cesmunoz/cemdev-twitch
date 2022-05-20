@@ -12,7 +12,6 @@ import {
   Home,
   Requests,
   Commands,
-  CommandsTemplate,
 } from './Pages';
 import Layout from './components/Layout';
 
@@ -40,10 +39,6 @@ function App() {
                 <Route
                   path="/commands"
                   element={<Commands />}
-                />
-                <Route
-                  path="/commands-template"
-                  element={<CommandsTemplate />}
                 />
                 <Route path="/" element={<Home />} />
               </Routes>

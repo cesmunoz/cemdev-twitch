@@ -35,7 +35,7 @@ function Requests() {
 
   const HEADERS = [
     { key: 'user', title: 'User' },
-    { key: 'request', title: 'Request' },
+    { key: 'request', title: 'Request', isKey: true },
     { key: 'timestamp', title: 'Timestamp' },
     {
       key: 'approve',
