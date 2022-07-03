@@ -1,3 +1,4 @@
+import KSUID from 'ksuid';
 import { ChatUserstate, Client } from 'tmi.js';
 import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
 import { Redis, DynamoDb } from '../utils';
@@ -52,6 +53,25 @@ const getCommands = async () => {
   return Items;
 };
 
+const saveRequest = async(context: any, message: string) => {
+  const ksuidSync = KSUID.randomSync().string;
+
+  const { username } = context;
+
+  const model = {
+    PK: PARTITION_KEYS.REQUESTS,
+    SK: `#${username}#${ksuidSync}`,
+    id: ksuidSync,
+    username,
+    checked: false,
+    value: message.replace('!request', '').trim()
+  };
+
+  await DynamoDb.insert(model);
+
+  await Redis.delete(REDIS_KEYS.REQUESTS);
+}
+
 const registerEvent = (client: Client) => {
   const handler = async (
     target: string,
@@ -81,6 +101,15 @@ const registerEvent = (client: Client) => {
       );
     }
 
+    if(commandName === '!request') {
+      saveRequest(context, msg);
+      return client.say(
+        target,
+        `La peticion ha sido guardada con exito!`,
+      );
+      return;
+    }
+
     const command = commandItems.find(
       (item: CommandType) => item.command === commandName,
     );
@@ -108,4 +137,5 @@ const registerEvent = (client: Client) => {
 
   client.on('message', handler);
 };
+
 export default registerEvent;

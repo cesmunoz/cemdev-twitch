@@ -18,50 +18,72 @@ const client = new DocumentClient({
 
 const TABLE_NAME = process.env.DB_TABLE || 'CEMDEV';
 
+// export default {
+//   get: (params: GetItemInput) =>
+//     client
+//       .get({
+//         ...params,
+//         TableName: TABLE_NAME,
+//       })
+//       .promise(),
+//   put: (params: PutItemInput) =>
+//     client
+//       .put({
+//         ...params,
+//         TableName: TABLE_NAME,
+//       })
+//       .promise(),
+//   query: (params: any) =>
+//     client
+//       .query({
+//         ...params,
+//         TableName: TABLE_NAME,
+//       })
+//       .promise(),
+//   update: (params: UpdateItemInput) =>
+//     client
+//       .update({
+//         ...params,
+//         TableName: TABLE_NAME,
+//       })
+//       .promise(),
+//   delete: (params: DeleteItemInput) =>
+//     client
+//       .delete({
+//         ...params,
+//         TableName: TABLE_NAME,
+//       })
+//       .promise(),
+//   insert: (model: PutItemInput) => {
+//     const params = {
+//       TableName: TABLE_NAME,
+//       Item: model,
+//       ConditionExpression:
+//         'attribute_not_exists(PK) AND attribute_not_exists(SK)',
+//       ReturnValues: 'ALL_OLD',
+//     };
+//     return client.put(params).promise();
+//   },
+// };
+
+const buildParameters = (params: any) => ({
+  TableName: TABLE_NAME,
+  ...params,
+});
+
 export default {
-  get: (params: GetItemInput) =>
-    client
-      .get({
-        ...params,
-        TableName: TABLE_NAME,
-      })
-      .promise(),
-  put: (params: PutItemInput) =>
-    client
-      .put({
-        ...params,
-        TableName: TABLE_NAME,
-      })
-      .promise(),
-  query: (params: any) =>
-    client
-      .query({
-        ...params,
-        TableName: TABLE_NAME,
-      })
-      .promise(),
-  update: (params: UpdateItemInput) =>
-    client
-      .update({
-        ...params,
-        TableName: TABLE_NAME,
-      })
-      .promise(),
-  delete: (params: DeleteItemInput) =>
-    client
-      .delete({
-        ...params,
-        TableName: TABLE_NAME,
-      })
-      .promise(),
-  insert: (model: PutItemInput) => {
+  get: (params: any) => client.get(buildParameters(params)).promise(),
+  put: (params: any) => client.put(buildParameters(params)).promise(),
+  query: (params: any) => client.query(buildParameters(params)).promise(),
+  update: (params: any) => client.update(buildParameters(params)).promise(),
+  delete: (params: any) => client.delete(buildParameters(params)).promise(),
+  insert: (model: any) => {
     const params = {
-      TableName: TABLE_NAME,
       Item: model,
       ConditionExpression:
         'attribute_not_exists(PK) AND attribute_not_exists(SK)',
       ReturnValues: 'ALL_OLD',
     };
-    return client.put(params).promise();
+    return client.put(buildParameters(params)).promise();
   },
 };

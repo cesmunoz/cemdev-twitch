@@ -1,3 +1,4 @@
+import KSUID from 'ksuid';
 import tmi from 'tmi.js';
 import registerTwitchEvents from './events';
 
@@ -21,8 +22,8 @@ const getClient = () => {
 const connect = async () => {
   const twitchClient = getClient();
   registerTwitchEvents(twitchClient);
-  await twitchClient.connect();
-  twitchClient.say("cemdev","c3mbot connected! Kappa");
+  await twitchClient.connect();  
+  // twitchClient.say("cemdev","c3mbot connected! Kappa");
 };
 
 export default {
