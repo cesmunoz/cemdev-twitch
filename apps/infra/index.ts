@@ -35,11 +35,7 @@ const buildDynamoTable = (table: string, environment: string) => {
       tags: {
         Environment: environment,
         Name: tableName,
-      },
-      ttl: {
-        attributeName: "ttl",
-        enabled: false,
-      },
+      }
     }
   );
 };
