@@ -47,5 +47,8 @@
       "packages/*"
     ]
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "volta": {
+    "node": "16.19.0"
+  }
 }

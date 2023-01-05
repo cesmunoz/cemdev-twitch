@@ -3,9 +3,14 @@
     "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
-    "lib": ["ES2016"],
+    "lib": [
+      "ES2016"
+    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "types": [
       "node"
     ],
@@ -17,6 +22,11 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
