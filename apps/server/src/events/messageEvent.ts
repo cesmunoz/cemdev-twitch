@@ -5,6 +5,8 @@ import { Redis, DynamoDb } from '../utils';
 
 const REGEXP_COMMAND = /\{(.*)\}/;
 
+const HELP_COMMANDS = ["!help", "!comandos", "!ayuda"];
+
 // TODO: better handler commands
 /*
 !uptime
@@ -53,7 +55,7 @@ const getCommands = async () => {
   return Items;
 };
 
-const saveRequest = async(context: any, message: string) => {
+const saveRequest = async (context: any, message: string) => {
   const ksuidSync = KSUID.randomSync().string;
 
   const { username } = context;
@@ -91,7 +93,7 @@ const registerEvent = (client: Client) => {
 
     const commandItems: Array<CommandType> = await getCommands();
 
-    if (commandName === '!help') {
+    if (HELP_COMMANDS.includes(commandName)) {
       const helpMessage = commandItems
         .map((item: CommandType) => item.command)
         .join(' || ');
@@ -101,7 +103,7 @@ const registerEvent = (client: Client) => {
       );
     }
 
-    if(commandName === '!request') {
+    if (commandName === '!request') {
       saveRequest(context, msg);
       return client.say(
         target,
