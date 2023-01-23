@@ -9,7 +9,7 @@
     "dev:ntl": "turbo run dev:ntl",
     "dev": "turbo run dev",
     "dev:client": "turbo run dev --scope=client",
-    "dev:server": "turbo run dev --scope=server",
+    "dev:server": "turbo run dev --scope=server --include-dependencies --no-deps --parallel",
     "build": "turbo run build",
     "build:client": "turbo run build --scope=client",
     "build:server": "turbo run build --scope=server",
@@ -22,7 +22,6 @@
     "lint:fix": "turbo run lint:fix",
     "lint:fix:client": "turbo run lint:fix --scope=client",
     "lint:fix:server": "turbo run lint:fix --scope=server",
-    "bot": "cd apps/server && npm run build && npm start",
     "clean": "turbo run clean"
   },
   "repository": {

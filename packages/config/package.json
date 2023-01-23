@@ -5,7 +5,8 @@
   "main": "index.js",
   "files": [
     "eslint-preset-frontend.js",
-    "eslint-preset-backend.js"
+    "eslint-preset-backend.js",
+    "tsconfig.json"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

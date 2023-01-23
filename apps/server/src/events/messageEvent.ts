@@ -1,7 +1,8 @@
 import KSUID from 'ksuid';
 import { ChatUserstate, Client } from 'tmi.js';
 import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
-import { Redis, DynamoDb } from '../utils';
+import { Redis } from '../utils';
+import Dynamo from 'dynamo';
 
 const REGEXP_COMMAND = /\{(.*)\}/;
 
@@ -39,7 +40,7 @@ const getCommands = async () => {
     return JSON.parse(items);
   }
 
-  const { Items } = await DynamoDb.query({
+  const { Items } = await Dynamo.query({
     KeyConditionExpression: 'PK = :pk',
     ExpressionAttributeValues: {
       ":pk": 'COMMANDS',
@@ -69,7 +70,7 @@ const saveRequest = async (context: any, message: string) => {
     value: message.replace('!request', '').trim()
   };
 
-  await DynamoDb.insert(model);
+  await Dynamo.insert(model);
 
   await Redis.delete(REDIS_KEYS.REQUESTS);
 }
