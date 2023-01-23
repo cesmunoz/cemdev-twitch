@@ -11,7 +11,7 @@ import twitchBot from './twitchBot';
 dotenv.config();
 const PORT = process.env.PORT || 8080;
 
-// const server = fastify({ logger: true });
+const server = fastify({ logger: true });
 
 // server.register(fc, {
 //   origin: '*',
@@ -28,9 +28,9 @@ const PORT = process.env.PORT || 8080;
 const start = async () => {
   try {
     twitchBot.connect();
-    // await server.listen(PORT);
+    await server.listen(PORT);
   } catch (err) {
-    // server.log.error(err);
+    server.log.error(err);
     process.exit(1);
   }
 };
