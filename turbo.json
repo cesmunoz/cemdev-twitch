@@ -17,6 +17,9 @@
     },
     "dev:ntl": {
       "cache": false
+    },
+    "clean": {
+      "cache": false
     }
   }
 }

@@ -22,7 +22,8 @@
     "lint:fix": "turbo run lint:fix",
     "lint:fix:client": "turbo run lint:fix --scope=client",
     "lint:fix:server": "turbo run lint:fix --scope=server",
-    "bot": "cd apps/server && npm run build && npm start"
+    "bot": "cd apps/server && npm run build && npm start",
+    "clean": "turbo run clean"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,6 @@
   },
   "packageManager": "yarn@1.22.17",
   "volta": {
-    "node": "16.19.0"
+    "node": "18.12.0"
   }
 }

@@ -7,6 +7,10 @@
     "eslint-preset-frontend.js",
     "eslint-preset-backend.js"
   ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist && rm -rf node_modules"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

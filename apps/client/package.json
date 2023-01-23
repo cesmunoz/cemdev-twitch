@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "npm run format && npm run lint:fix",
     "lint:fix": "eslint --fix ./src/**/*.ts ./src/**/*.tsx ./functions/**/*.ts",
-    "format": "prettier --write src/**/*.{tsx,ts,js,json} ./functions/**/*.ts --config .prettierrc"
+    "format": "prettier --write src/**/*.{tsx,ts,js,json} ./functions/**/*.ts --config .prettierrc",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.5",

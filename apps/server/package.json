@@ -13,12 +13,14 @@
     "lint:fix": "eslint --fix ./src/**/*.ts",
     "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc",
     "heroku-postbuild": "npm run build",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "clean": "rm -rf dist && rm -rf node_modules"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^18.11.18",
     "aws-sdk": "^2.1082.0",
     "dotenv": "^16.0.0",
     "fastify": "^3.27.0",
@@ -29,22 +31,20 @@
     "ksuid": "^3.0.0",
     "tmi.js": "^1.8.5",
     "toad-scheduler": "^1.6.0",
-    "tslint": "^6.1.3"
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.4",
+    "@types/tmi.js": "^1.8.2",
+    "@types/ioredis": "^4.28.8"
   },
   "devDependencies": {
     "@types/fastify-cors": "^2.1.0",
-    "@types/ioredis": "^4.28.8",
-    "@types/node": "^17.0.14",
-    "@types/tmi.js": "^1.8.1",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "config": "*",
     "eslint": "^8.8.0",
-    "nodemon": "^2.0.15",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "nodemon": "^2.0.15"
   },
   "volta": {
-    "node": "16.19.0"
+    "node": "18.12.0"
   }
 }

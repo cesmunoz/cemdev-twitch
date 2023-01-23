@@ -3047,7 +3047,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*":
+"@types/node@*", "@types/node@^18.11.18":
   version "18.11.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
   integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
@@ -3056,11 +3056,6 @@
   version "16.18.11"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.11.tgz#cbb15c12ca7c16c85a72b6bdc4d4b01151bb3cae"
   integrity sha512-3oJbGBUWuS6ahSnEq1eN2XrCyf4YsWI8OyCvo7c64zQJNplk3mO84t53o8lfTk+2ji59g5ycfc6qQ3fdHliHuA==
-
-"@types/node@^17.0.14":
-  version "17.0.45"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.45.tgz#2c0fafd78705e7a18b7906b5201a522719dc5190"
-  integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
 
 "@types/normalize-package-data@^2.4.0", "@types/normalize-package-data@^2.4.1":
   version "2.4.1"
@@ -3117,7 +3112,7 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
   integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
 
-"@types/tmi.js@^1.8.1":
+"@types/tmi.js@^1.8.2":
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/@types/tmi.js/-/tmi.js-1.8.2.tgz#7345399a4b74c39b9baa98540a397e24fa3a9e5c"
   integrity sha512-meCZPCqs8zuCvw8Wl+0UXy2D6L/31Vskc99B/dZeQtIZvzX3EEzWSLTmRRxwI36m5hQFi3xjoLcnmEL8hBPqHA==
@@ -3849,7 +3844,7 @@ avvio@^7.1.2:
     fastq "^1.6.1"
     queue-microtask "^1.1.2"
 
-aws-sdk@^2.1082.0:
+aws-sdk@^2.1082.0, aws-sdk@^2.1299.0:
   version "2.1299.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1299.0.tgz#493254104af5b9aaee0d7cd9150611d137e4f205"
   integrity sha512-xTh6pmCUEJljkFfTM3sE8UozDxal80uX/5WZl8GcjQ+NbrGeQEdvL6wFWBwEEVbhR0VBVuU37cKPuQlfENbRYA==
@@ -5330,7 +5325,7 @@ dot-prop@^7.0.0:
   dependencies:
     type-fest "^2.11.2"
 
-dotenv@^16.0.0, dotenv@^16.0.2:
+dotenv@^16.0.0, dotenv@^16.0.2, dotenv@^16.0.3:
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
   integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
@@ -11889,6 +11884,11 @@ ts-node@^10.9.1:
     make-error "^1.1.1"
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
+
+tsc@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/tsc/-/tsc-2.0.4.tgz#5f6499146abea5dca4420b451fa4f2f9345238f5"
+  integrity sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
