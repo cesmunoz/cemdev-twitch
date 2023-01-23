@@ -35,7 +35,8 @@
     "typescript": "^4.9.4",
     "@types/tmi.js": "^1.8.2",
     "@types/ioredis": "^4.28.8",
-    "dynamo": "*"
+    "dynamoIO": "*",
+    "redisIO": "*"
   },
   "devDependencies": {
     "@types/fastify-cors": "^2.1.0",

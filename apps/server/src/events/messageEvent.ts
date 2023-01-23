@@ -1,8 +1,8 @@
 import KSUID from 'ksuid';
 import { ChatUserstate, Client } from 'tmi.js';
 import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
-import { Redis } from '../utils';
-import Dynamo from 'dynamo';
+import Redis from 'redisIO';
+import Dynamo from 'dynamoIO';
 
 const REGEXP_COMMAND = /\{(.*)\}/;
 

@@ -1,7 +1,7 @@
 {
-  "name": "dynamo",
+  "name": "redisIO",
   "version": "1.0.0",
-  "description": "This is the package for the Dynamo project.",
+  "description": "This is the package for the Redis project.",
   "main": "./dist/index.js",
   "private": true,
   "scripts": {
