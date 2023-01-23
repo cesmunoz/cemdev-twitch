@@ -1,6 +1,20 @@
 # cemdev-twitch
 
-# Technologies
+## Table of content
+
+- [Requirements](#requirements)
+- [Install](#install)
+- [Technologies](#technologies)
+- [UsefullCommands](#usefull-commands)
+
+
+## Requirements
+Yarn
+Flyctl
+Netlify
+node 16 or above
+
+## Technologies
 
 - React
 - Vite
@@ -18,3 +32,8 @@
 - TMI.js
 - Nodemon
 - Upstash
+
+## Usefull Commands
+
+Autoscaling fly
+> flyctl autoscale --app cemdev-twitch-bot set min=1
