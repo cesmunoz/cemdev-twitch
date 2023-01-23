@@ -109,7 +109,6 @@ const registerEvent = (client: Client) => {
         target,
         `La peticion ha sido guardada con exito!`,
       );
-      return;
     }
 
     const command = commandItems.find(
