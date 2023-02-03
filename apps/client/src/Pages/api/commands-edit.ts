@@ -13,13 +13,20 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { command, value } = req.body;
-  await DynamoDb.insert({
-    PK: PARTITION_KEYS.COMMANDS,
-    SK: req.body.command,
-    command,
-    value,
+  await DynamoDb.update({
+    Key: {
+      PK: PARTITION_KEYS.COMMANDS,
+      SK: command,
+    },
+    UpdateExpression: 'set #value = :value',
+    ExpressionAttributeNames: {
+      '#value': 'value',
+    },
+    ExpressionAttributeValues: {
+      ':value': value,
+    },
   });
 
   await Redis.delete(REDIS_KEYS.COMMANDS);
-  res.status(201).json({ command, value })
+  res.status(200).json({ command, value })
 };

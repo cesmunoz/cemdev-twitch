@@ -11,18 +11,14 @@ type Command = {
 const Commands = () => {
   const [commands, setCommands] = useState<Array<Command>>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [commandSelected, setCommandSelected] = useState<Command | null>(null);
+  const [isNew, setIsNew] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Command>({
-    defaultValues: {
-      command: commandSelected?.command ?? "",
-      value: commandSelected?.value ?? "",
-    },
-  });
+    setValue,
+  } = useForm<Command>();
 
   useEffect(() => {
     fetch("/api/commands-get", {
@@ -38,7 +34,9 @@ const Commands = () => {
   }, []);
 
   const handleNewEdit = (command?: Command) => {
-    setCommandSelected(command ?? null);
+    setIsNew(command !== null);
+    setValue("command", command?.command ?? "");
+    setValue("value", command?.value ?? "");
     setIsOpen(true);
   };
 
@@ -57,17 +55,31 @@ const Commands = () => {
   };
 
   const onSubmit = (data: Command) => {
-    fetch("/api/commands-create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.ok) {
-        setIsOpen(false);
-      }
-    });
+    if (!isNew) {
+      fetch("/api/commands-create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (response.ok) {
+          setIsOpen(false);
+        }
+      });
+    } else {
+      fetch("/api/commands-edit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (response.ok) {
+          setIsOpen(false);
+        }
+      });
+    }
   };
 
   return (
@@ -147,7 +159,7 @@ const Commands = () => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    {commandSelected ? "Edit" : "Create"} Command
+                    {isNew ? "Edit" : "Create"} Command
                   </Dialog.Title>
                   <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
@@ -161,7 +173,6 @@ const Commands = () => {
                         id="command"
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="!command"
-                        defaultValue={commandSelected?.command ?? ""}
                         {...register("command", {
                           required: "This is required.",
                         })}
@@ -186,7 +197,6 @@ const Commands = () => {
                         id="value"
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="this is a command action"
-                        defaultValue={commandSelected?.value ?? ""}
                         {...register("value", {
                           required: "This is required.",
                         })}
