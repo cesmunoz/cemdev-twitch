@@ -43,7 +43,17 @@ const Commands = () => {
   };
 
   const handleDelete = (command: Command) => {
-    // TODO: Implement delete
+    fetch("/api/commands-delete/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(command),
+    }).then((response) => {
+      if (response.ok) {
+        console.log("deleted");
+      }
+    });
   };
 
   const onSubmit = (data: Command) => {
