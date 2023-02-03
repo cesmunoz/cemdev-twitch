@@ -15,12 +15,8 @@ const NavBar = () => {
     <nav className="bg-gray-800 p-5">
       <div className="flex gap-5 place-content-center">
         {items.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className="text-white text-lg font-bold"
-          >
-            {item.label}
+          <Link key={item.label} href={item.href}>
+            <span className="text-white text-lg font-bold">{item.label}</span>
           </Link>
         ))}
       </div>

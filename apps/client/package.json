@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
@@ -18,7 +19,7 @@
     "dynamoIO": "*",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
-    "next": "13.1.5",
+    "next": "12.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1",

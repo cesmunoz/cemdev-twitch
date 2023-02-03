@@ -22,7 +22,7 @@
     "lint:fix": "turbo run lint:fix",
     "lint:fix:client": "turbo run lint:fix --scope=client",
     "lint:fix:server": "turbo run lint:fix --scope=server",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean && rm -rf node_modules"
   },
   "repository": {
     "type": "git",

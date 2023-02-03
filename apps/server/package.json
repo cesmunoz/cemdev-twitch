@@ -14,7 +14,7 @@
     "format": "prettier --write ./src/**/*.{ts,json} --config .prettierrc",
     "heroku-postbuild": "npm run build",
     "start": "node dist/app.js",
-    "clean": "rm -rf dist && rm -rf node_modules"
+    "clean": "rm -rf dist node_modules .turbo"
   },
   "keywords": [],
   "author": "",
