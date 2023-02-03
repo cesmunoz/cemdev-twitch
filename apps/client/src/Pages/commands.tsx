@@ -11,7 +11,7 @@ type Command = {
 const Commands = () => {
   const [commands, setCommands] = useState<Array<Command>>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNew] = useState<boolean | null>(null);
 
   const {
     register,
@@ -34,7 +34,7 @@ const Commands = () => {
   }, []);
 
   const handleNewEdit = (command?: Command) => {
-    setIsNew(command !== null);
+    setIsNew(command !== undefined);
     setValue("command", command?.command ?? "");
     setValue("value", command?.value ?? "");
     setIsOpen(true);
@@ -65,6 +65,7 @@ const Commands = () => {
       }).then((response) => {
         if (response.ok) {
           setIsOpen(false);
+          setIsNew(null);
         }
       });
     } else {
@@ -77,6 +78,7 @@ const Commands = () => {
       }).then((response) => {
         if (response.ok) {
           setIsOpen(false);
+          setIsNew(null);
         }
       });
     }
