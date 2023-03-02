@@ -7,19 +7,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist node_modules .turbo",
-    "build": "tsc -p tsconfig.json",
-    "dev": "tsc -w -p tsconfig.json"
+    "typecheck": "tsc --noEmit --incremental false",
+    "build": "tsup index.ts --format esm,cjs --dts --external aws-sdk",
+    "dev": "concurrently \"tsup index.ts --watch --format esm,cjs --dts --external aws-sdk\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1299.0",
-    "tsc": "^2.0.4",
-    "typescript": "^4.9.4"
+    "dotenv": "^16.0.3",
+    "ioredis": "^5.3.1"
   },
   "devDependencies": {
+    "@types/node": "^18.14.4",
     "ts-node": "^10.9.1",
-    "tslint": "^6.1.3"
+    "tslint": "^6.1.3",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
   }
 }

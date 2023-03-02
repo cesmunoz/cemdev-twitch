@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:ntl": "turbo run dev:ntl",
+    "typecheck": "turbo run typecheck",
     "dev": "turbo run dev",
     "dev:client": "turbo run dev --scope=client",
     "dev:server": "turbo run dev --scope=server --include-dependencies --no-deps --parallel",

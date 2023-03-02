@@ -9,6 +9,7 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "typecheck": { "outputs": [] },
     "format": { "outputs": [] },
     "lint": { "outputs": [] },
     "lint:fix": { "outputs": [] },
