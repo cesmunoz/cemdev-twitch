@@ -118,3 +118,5 @@ dist/
 .env.production.local
 .yarnrc
 .yarn
+
+apps/old_client/
