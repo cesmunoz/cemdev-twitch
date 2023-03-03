@@ -102,9 +102,19 @@ dist
 
 # TernJS port file
 .tern-port
+
+# turbo
 .turbo
+
+# builds
 build/**
 dist/**
+dist/
+
+# env
 .env
+.env.development.local
+.env.test.local
+.env.production.local
 .yarnrc
 .yarn
