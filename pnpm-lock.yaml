@@ -16,25 +16,42 @@ importers:
 
   apps/client:
     specifiers:
+      '@headlessui/react': ^1.7.7
+      '@hookform/error-message': ^2.0.1
       '@types/node': 18.14.5
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
+      autoprefixer: ^10.4.13
+      dynamoIO: workspace:*
       eslint: 8.35.0
       eslint-config-next: 13.1.5
       next: ^13.2.3
+      postcss: ^8.4.14
       react: 18.2.0
       react-dom: 18.2.0
+      react-hook-form: ^7.42.1
+      redisIO: workspace:*
+      tailwindcss: ^3.2.4
       typescript: 4.9.5
     dependencies:
+      '@headlessui/react': 1.7.12_biqbaboplfbrettd7655fr4n2y
+      '@hookform/error-message': 2.0.1_sl2ffnk64jshgfhyb65tx6srja
       '@types/node': 18.14.5
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
+      dynamoIO: link:../../packages/dynamoIO
       eslint: 8.35.0
       eslint-config-next: 13.1.5_ycpbpc6yetojsgtrx3mwntkhsu
       next: 13.2.3_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-hook-form: 7.43.3_react@18.2.0
+      redisIO: link:../../packages/redisIO
       typescript: 4.9.5
+    devDependencies:
+      autoprefixer: 10.4.13_postcss@8.4.14
+      postcss: 8.4.14
+      tailwindcss: 3.2.7_postcss@8.4.14
 
   apps/infra:
     specifiers:
