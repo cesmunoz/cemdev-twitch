@@ -4,25 +4,11 @@ import { PARTITION_KEYS, REDIS_KEYS } from '../constants';
 import Redis from 'redisIO';
 import Dynamo from 'dynamoIO';
 
+let twitchClient: Client;
+let commands: Array<CommandType> = [];
 const REGEXP_COMMAND = /\{(.*)\}/;
-
 const HELP_COMMANDS = ["!help", "!comandos", "!ayuda"];
-
-// TODO: better handler commands
-/*
-!uptime
-!setup
-!horarios
-*/
-
-// const commandHandlers: TwitchHandleCommand = {
-//   '!dice': handleDice,
-// };
-// const handleDice = () => {
-//   const sides = 6;
-//   const result = Math.floor(Math.random() * sides) + 1;
-//   return `You rolled a ${result}`;
-// };
+const DAY_IN_SECONDS = 86400;
 
 type CommandType = {
   PK: string;
@@ -31,7 +17,13 @@ type CommandType = {
   value: string;
 };
 
-const DAY_IN_SECONDS = 86400;
+// TODO: Missing commands
+/*
+!uptime
+!setup
+!horarios
+*/
+
 
 const getCommands = async () => {
   const items = await Redis.get(REDIS_KEYS.COMMANDS);
@@ -75,69 +67,60 @@ const saveRequest = async (context: any, message: string) => {
   await Redis.delete(REDIS_KEYS.REQUESTS);
 }
 
-const registerEvent = (client: Client) => {
-  const handler = async (
-    target: string,
-    context: ChatUserstate,
-    msg: string,
-    self: boolean,
-  ) => {
-    if (self) {
-      // Ignore messages from the bot
-      return;
-    }
+const say = async (target: string, message: string) => twitchClient.say(target, message);
 
-    const commandName = msg.trim().split(' ')[0];
-    if (!commandName.startsWith('!')) {
-      return;
-    }
 
-    const commandItems: Array<CommandType> = await getCommands();
+const handler = async (
+  target: string,
+  context: ChatUserstate,
+  msg: string,
+  self: boolean,
+) => {
+  if (self) {
+    return;
+  }
 
-    if (HELP_COMMANDS.includes(commandName)) {
-      const helpMessage = commandItems
-        .map((item: CommandType) => item.command)
-        .join(' || ');
-      return client.say(
-        target,
-        `Los commandos habilitados son: ${helpMessage}`,
-      );
-    }
+  const commandName = msg.trim().split(' ')[0];
+  if (!commandName.startsWith('!')) {
+    return;
+  }
 
-    if (commandName === '!request') {
-      saveRequest(context, msg);
-      return client.say(
-        target,
-        `La peticion ha sido guardada con exito!`,
-      );
-    }
+  if (HELP_COMMANDS.includes(commandName)) {
+    const helpMessage = commands.map((item) => item.command).join(' || ');
+    say(target, `Los commandos habilitados son: ${helpMessage}`);
+    return;
+  }
 
-    const command = commandItems.find(
-      (item: CommandType) => item.command === commandName,
-    );
+  if (commandName === '!request') {
+    saveRequest(context, msg);
+    say(target, "La peticion ha sido guardada con exito!");
+    return;
+  }
 
-    if (!command) {
-      console.log(`* Unknown command ${commandName}`);
-      // TODO: Register possible future command
-      return;
-    }
+  const command = commands.find((item) => item.command === commandName);
 
-    const matches: RegExpMatchArray | null =
-      command.value.match(REGEXP_COMMAND);
+  if (!command) {
+    console.log(`* Unknown command ${commandName}`);
+    // TODO: Register possible future command
+    return;
+  }
 
-    if (!matches) {
-      return client.say(target, command.value);
-    }
+  const matches = command.value.match(REGEXP_COMMAND);
+  if (!matches) {
+    say(target, command.value);
+    return;
+  }
 
-    const [commandKeyTemplate, commandKeyValue] = matches;
-    const message = command.value.replace(
-      commandKeyTemplate,
-      context[commandKeyValue],
-    );
-    client.say(target, message);
-  };
-
-  client.on('message', handler);
+  const [commandKeyTemplate, commandKeyValue] = matches;
+  const message = command.value.replace(
+    commandKeyTemplate,
+    context[commandKeyValue],
+  );
+  say(target, message);
 };
 
-export default registerEvent;
+export const messageEvent = async (client: Client) => {
+  twitchClient = client;
+  commands = await getCommands();
+  client.on('message', handler)
+};

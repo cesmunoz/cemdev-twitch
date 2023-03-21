@@ -6,7 +6,7 @@ import registerContainer from './config/diContainer';
 import homeRoutes from './home';
 import historyRoutes from './histories';
 import webhooks from './webhooks';
-import twitchBot from './twitchBot';
+import { connect } from './twitchBot';
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
@@ -27,7 +27,7 @@ const server = fastify({ logger: true });
 
 const start = async () => {
   try {
-    twitchBot.connect();
+    connect();
     await server.listen(PORT);
   } catch (err) {
     server.log.error(err);

@@ -1,6 +1,6 @@
 import { Client } from 'tmi.js';
 import connectedEvent from './connectedEvent';
-import messageEvent from './messageEvent';
+import { messageEvent } from './messageEvent';
 
 const events = [connectedEvent, messageEvent];
 
