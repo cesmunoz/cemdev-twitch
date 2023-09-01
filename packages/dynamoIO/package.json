@@ -9,7 +9,7 @@
     "clean": "rm -rf dist node_modules .turbo",
     "typecheck": "tsc --noEmit --incremental false",
     "build": "tsup index.ts --format esm,cjs --dts --external aws-sdk",
-    "dev": "concurrently \"tsup index.ts --watch --format esm,cjs --dts --external aws-sdk\""
+    "dev": "tsup index.ts --watch --format esm,cjs --dts --external aws-sdk"
   },
   "keywords": [],
   "author": "",

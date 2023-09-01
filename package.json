@@ -10,6 +10,7 @@
     "dev": "turbo run dev",
     "dev:client": "turbo run dev --scope=client",
     "dev:server": "turbo run dev --scope=server --include-dependencies --no-deps --parallel",
+    "start:server": "turbo run start --scope=server --include-dependencies --no-deps --parallel",
     "build": "turbo run build",
     "build:client": "turbo run build --scope=client",
     "build:server": "turbo run build --scope=server",
