@@ -43,7 +43,8 @@
     "@typescript-eslint/parser": "^5.11.0",
     "config": "*",
     "eslint": "^8.8.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.9.1"
   },
   "volta": {
     "node": "18.12.0"
