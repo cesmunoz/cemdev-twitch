@@ -1,10 +1,12 @@
 import { Client } from 'tmi.js';
-import connectedEvent from './connectedEvent';
+// import connectedEvent from './connectedEvent';
 import { messageEvent } from './messageEvent';
 
-const events = [connectedEvent, messageEvent];
+const events = [messageEvent];
 
-const registerTwitchEvents = (client: Client) =>
-  events.forEach((event) => event(client));
+const registerTwitchEvents = (client: Client) => {
+  messageEvent(client);
+}
+//   events.forEach((event) => event(client));
 
 export default registerTwitchEvents;
